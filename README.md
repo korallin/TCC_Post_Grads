@@ -26,3 +26,5 @@ To Do:
 - Estudar os códigos das estudantes de Iniciação Científica do Professor Elias
 - Terminar o curso de PostgreSQL da Udemy
 - Pesquisar materiais de criação de Dashboards usando Python
+
+<s>Vai ser fácil!</s>
