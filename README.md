@@ -1,4 +1,4 @@
-# TeeCeeCee-JayeFfeReN
+# TCC da especialização do IMD/JFRN
 **Trabalho do final do curso na JFRN**
 
 Esse é o repositório do TCC da pós-graduação do IMD/JFRN, o objetivo é, basicamente, criar um painel que seja fácil de ler, minimalista e fácil de ser distribuído, e precisa mostrar informações sobre as distrubições dos processos pelas Varas do Rio Grande do Norte, por enquanto podemos nos concentrar em poucas Varas e escalar com o tempo. 
