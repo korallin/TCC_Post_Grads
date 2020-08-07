@@ -28,7 +28,7 @@ Index(['Unnamed: 0', '%ID_PROCESSO_TRF', 'Sistema', 'Número Processo',
 
 opcoes_ano = []
 for ano in dados_varas['ano_primeira_dist'].unique():
-    opcoes_ano.append({'label':str(ano),'value':ano})
+    opcoes_ano.append({'label':ano,'value':ano})
 
 opcoes_vara = []
 for vara in dados_varas['Órgão Julgador'].unique():
@@ -43,18 +43,13 @@ app.layout = html.Div([
              html.Div([html.H3('Selecione o ano a ser visualizado: ',style={'paddingRight':'30px'}),
              dcc.Dropdown(id='escolhe-ano',options=opcoes_ano,value='None')],
              style={'display':'inline-block','verticalAlign':'top','width':'30%'}),
-
-             html.Div([html.Button(id='botao-enviar',n_clicks=0,children='submit',
-                                   style={'fonteSize':24,'marginLeft':'30px'})],
-             style={'display':'inline-block'}),
              dcc.Graph(id='grafico')
 ])
 
-@app.callback(dash.dependencies.Output('grafico','figure'),
-             [dash.dependencies.Input('botao-enviar','n_clicks')],
-             [dash.dependencies.State('escolhe-vara','value')],
-             [dash.dependencies.State('escolhe-ano','value')])
-def update_figure(n_clicks,vara_selecionada,ano_escolhido):
+@app.callback(Output('grafico','figure'),
+             [Input('escolhe-vara','value')],
+             [State('escolhe-ano','value')])
+def update_figure(vara_selecionada,ano_escolhido):
     #dados apenas para seleção do menu dropdown
     vara_escolhida = dados_varas[dados_varas['Órgão Julgador']==vara_selecionada]
     vara_escolhida = vara_escolhida[vara_escolhida['ano_primeira_dist']==ano_escolhido]
@@ -64,11 +59,11 @@ def update_figure(n_clicks,vara_selecionada,ano_escolhido):
         vara_filtrada = vara_escolhida[vara_escolhida['Assunto']==assunto_processo]
         traces.append(go.Bar(
                x=vara_filtrada['mes_primeira_dist'],
-               y=vara_filtrada['Assunto'],
+               y=vara_filtrada['Assunto']
          ))
 
     return {'data':traces,
-            'layout':go.Layout(title='Assunto dos processos por Vara',
+            'layout':go.Layout(title= 'Assunto dos processos por Vara',
                                xaxis = {'title':'Data da distrubuição'},
                                yaxis = {'title':'Assunto'})}
 

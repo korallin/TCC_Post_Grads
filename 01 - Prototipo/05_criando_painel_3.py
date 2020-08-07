@@ -1,14 +1,21 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
-import plotly.graph_objs as go
+from dash.dependencies import Input, Output, State
 import pandas as pd
-
-df = pd.read_csv('../mpg.csv')
+from numpy import random
+import plotly.graph_objs as go
+import pandas_datareader.data as web
+from datetime import datetime
+import numpy as np
+import os
 
 app = dash.Dash()
-features = df.columns
+
+dados_varas = pd.read_csv('../dados-pje-MPF.csv',dtype='unicode')
+
+dados_varas['ano_primeira_dist'] = pd.DatetimeIndex(dados_varas['Data Primeira Distribuição']).year
+dados_varas['mes_primeira_dist'] = pd.DatetimeIndex(dados_varas['Data Primeira Distribuição']).month
 
 app.layout = html.Div([
              html.Div([
