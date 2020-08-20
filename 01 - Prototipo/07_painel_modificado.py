@@ -6,7 +6,6 @@ from dash.dependencies import Input, Output, State
 import pandas as pd
 from numpy import random
 import plotly.graph_objs as go
-import pandas_datareader.data as web
 import numpy as np
 import os
 
@@ -19,13 +18,30 @@ app = dash.Dash()
 #server = app.server
 
 dados_varas = pd.read_csv('../dados-pje-MPF.csv',dtype='unicode')
-#df[df.name != 'Tina']
 
 dados_varas['ano_primeira_dist'] = pd.DatetimeIndex(dados_varas['Data Primeira Distribuição']).year
 
 dados_varas=dados_varas[dados_varas.ano_primeira_dist > 2014]
 
 dados_varas['mes_primeira_dist'] = pd.DatetimeIndex(dados_varas['Data Primeira Distribuição']).month
+
+dados_varas.sort_values(['ano_primeira_dist','mes_primeira_dist'])
+
+'''
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(1,'Jan')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(2,'Fev')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(3,'Mar')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(4,'Abr')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(5,'Mai')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(6,'Jun')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(7,'Jul')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(8,'Ago')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(9,'Set')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(10,'Out')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(11,'Nov')
+dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(12,'Dez')
+
+'''
 
 '''
 Index(['Unnamed: 0', '%ID_PROCESSO_TRF', 'Sistema', 'Número Processo',
@@ -54,7 +70,7 @@ app.layout = html.Div([
              dcc.Dropdown(id='escolhe-ano',options=opcoes_ano,value='None')],
              style={'display':'inline-block','verticalAlign':'top','width':'20%'}),
 
-             dcc.Graph(id='grafico_1',responsive=True)
+             html.Div([dcc.Graph(id='grafico_1',responsive=True)],style={"border":"2px black solid"})
              #dcc.Graph(id='grafico_2',responsive=True)
 ])
 
@@ -65,7 +81,24 @@ def update_figure(vara_selecionada,ano_escolhido):
     #dados apenas para seleção do menu dropdown
     vara_escolhida = dados_varas[dados_varas['Órgão Julgador']==vara_selecionada]
     vara_escolhida = vara_escolhida[vara_escolhida['ano_primeira_dist']==ano_escolhido]
+
+    vara_escolhida.sort_values(['mes_primeira_dist'])
+
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(1,'01 - Jan')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(2,'02 - Fev')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(3,'03 - Mar')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(4,'04 - Abr')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(5,'05 - Mai')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(6,'06 - Jun')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(7,'07 - Jul')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(8,'08 - Ago')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(9,'09 - Set')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(10,'10 - Out')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(11,'11 - Nov')
+    vara_escolhida['mes_primeira_dist'] = vara_escolhida['mes_primeira_dist'].replace(12,'12 - Dez')
+
     traces = []
+
 
     for assunto_processo in vara_escolhida['Assunto'].unique():
         vara_filtrada = vara_escolhida[vara_escolhida['Assunto']==assunto_processo]
@@ -76,7 +109,7 @@ def update_figure(vara_selecionada,ano_escolhido):
 
     return {'data':traces,
             'layout':go.Layout(title= 'Assunto dos processos por Vara',
-                               xaxis = {'title':'Data da distrubuição'},
+                               xaxis = {'title':'Mês da distrubuição','categoryorder':'category ascending'},
                                yaxis = {'title':'Assunto','visible':False})}
 
 
