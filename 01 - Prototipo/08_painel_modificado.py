@@ -112,7 +112,8 @@ def update_figure(vara_selecionada,ano_escolhido):
     return {'data':traces,
             'layout':go.Layout(title= 'Assunto dos processos por Vara',
                                xaxis = {'title':'Mês da distrubuição','categoryorder':'category ascending'},
-                               yaxis = {'title':'Assunto','visible':False})}
+                               yaxis = {'title':'Assunto','visible':False},
+                               barmode='stack')}
 
 
 @app.callback(Output('grafico_2','figure'),

@@ -7,33 +7,23 @@ import pandas as pd
 from numpy import random
 import plotly.graph_objs as go
 import numpy as np
-import os
-import dash_bootstrap_components as dbc
-import plotly.express as px
-
-
 
 USERNAME_PASSWORD_PAIRS = [
-    ['EliasJacob', 'PinkFloyd1973']
+    ['EliasJacob', 'PinkFloyd1973'],
+    ['BrunoSantos', 'GrandeSenha']
 ]
 
-BS="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/superhero/bootstrap.min.css"
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
-#app=dash.Dash()
-#external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-#app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-#auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
-#server = app.server
+auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
+server = app.server
 
-dados_varas = pd.read_csv('../dados-pje-MPF.csv',dtype='unicode')
+dados_varas = pd.read_csv('dados-pje-MPF.csv',dtype='unicode')
 
 dados_varas['ano_primeira_dist'] = pd.DatetimeIndex(dados_varas['Data Primeira Distribuição']).year
 
 dados_varas=dados_varas[dados_varas.ano_primeira_dist > 2014]
 
 dados_varas['mes_primeira_dist'] = pd.DatetimeIndex(dados_varas['Data Primeira Distribuição']).month
-
-dados_varas.sort_values(['ano_primeira_dist','mes_primeira_dist'])
 
 '''
 Index(['Unnamed: 0', '%ID_PROCESSO_TRF', 'Sistema', 'Número Processo',
@@ -56,14 +46,14 @@ app.layout = html.Div([
              html.H1('Painel de visualização dos assuntos mês a mês'),
              html.Div([html.H3('Selecione uma Unidade: ', style={'paddingRight':'25px'}),
              dcc.Dropdown(id='escolhe-vara',options=opcoes_vara,value='None')],
-             style={'display':'inline-block','verticalAlign':'top','width':'15%'}),
+             style={'display':'inline-block','verticalAlign':'top','width':'20%'}),
 
              html.Div([html.H3('Selecione o ano a ser visualizado: ',style={'paddingRight':'25px'}),
              dcc.Dropdown(id='escolhe-ano',options=opcoes_ano,value='None')],
-             style={'display':'inline-block','verticalAlign':'top','width':'15%'}),
+             style={'display':'inline-block','verticalAlign':'top','width':'20%'}),
 
-             html.Div([dcc.Graph(id='grafico_1',responsive=True)],style={"border":"2px black solid","background-color":"lightblue"}),
-             html.Div([dcc.Graph(id='grafico_2',responsive=True)],style={"border":"5px outset red"})
+             html.Div([dcc.Graph(id='grafico_1',responsive=True)],style={"border":"2px black solid"}),
+             html.Div([dcc.Graph(id='grafico_2',responsive=True)],style={"border":"2px outset red"})
              #dcc.Graph(id='grafico_2',responsive=True)
 ])
 
@@ -102,10 +92,9 @@ def update_figure(vara_selecionada,ano_escolhido):
 
     return {'data':traces,
             'layout':go.Layout(title= 'Assunto dos processos por Vara',
-                               xaxis = {'title':'Mês da distrubuição','categoryorder':'category ascending'},
+                               xaxis = {'title':'Mês da distribuição','categoryorder':'category ascending'},
                                yaxis = {'title':'Assunto','visible':False},
                                barmode='stack')}
-
 
 @app.callback(Output('grafico_2','figure'),
              [Input('escolhe-ano','value')])
@@ -126,6 +115,8 @@ def update_figure_2(ano_escolhido):
                                xaxis = {'title':'Órgão Julgador','categoryorder':'category ascending'},
                                yaxis = {'title':'Assunto','visible':False},
                                barmode='stack')}
+
+
 
 if __name__ == '__main__':
     app.run_server()
