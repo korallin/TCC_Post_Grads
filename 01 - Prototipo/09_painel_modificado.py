@@ -124,7 +124,7 @@ def update_figure_2(ano_escolhido):
     return {'data':traces_vara,
             'layout':go.Layout(title= 'Distribuição de processos pelos Órgãos Julgadores',
                                xaxis = {'title':'Órgão Julgador','categoryorder':'category ascending'},
-                               yaxis = {'title':'Assunto','visible':False},
+                               yaxis = {'title':'Total de Processos'},
                                barmode='stack')}
 
 if __name__ == '__main__':
