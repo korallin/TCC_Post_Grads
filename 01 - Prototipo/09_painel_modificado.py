@@ -17,7 +17,6 @@ USERNAME_PASSWORD_PAIRS = [
     ['EliasJacob', 'PinkFloyd1973']
 ]
 
-BS="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/superhero/bootstrap.min.css"
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
 #app=dash.Dash()
 #external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -101,7 +100,7 @@ def update_figure(vara_selecionada,ano_escolhido):
          ))
 
     return {'data':traces,
-            'layout':go.Layout(title= 'Assunto dos processos por Vara',
+            'layout':go.Layout(title= {"text": "Distribuição de processos por mês da {}".format(vara_selecionada)},
                                xaxis = {'title':'Mês da distrubuição','categoryorder':'category ascending'},
                                yaxis = {'title':'Assunto','visible':False},
                                barmode='stack')}
@@ -122,10 +121,21 @@ def update_figure_2(ano_escolhido):
          ))
 
     return {'data':traces_vara,
-            'layout':go.Layout(title= 'Distribuição de processos pelos Órgãos Julgadores',
+            'layout':go.Layout(title= 'Distribuição de processos pelos Órgãos Julgadores no ano {}'.format(ano_escolhido),
                                xaxis = {'title':'Órgão Julgador','categoryorder':'category ascending'},
                                yaxis = {'title':'Total de Processos'},
                                barmode='stack')}
+
+
+'''
+
+To get the n most frequent values, just subset .value_counts() and grab the index:
+
+# get top 10 most frequent names
+n = 10
+dataframe['name'].value_counts()[:n].index.tolist()
+
+'''
 
 if __name__ == '__main__':
     app.run_server()
