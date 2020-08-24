@@ -1,0 +1,81 @@
+%% Customizações do abnTeX2 (http://abnTeX2.googlecode.com)
+%% para o Programa de Residência em Tecnologia da Informação
+%% do Instituto Metrópole Digital (IMD) da 
+%% Universidade Federal do Rio Grande do Norte (UFRN)
+
+\ProvidesPackage{abntex2novopacote}[2019/01/31 Criacao desta customizacao do abnTeX2]
+\renewcommand{\ABNTEXchapterfont}{\normalfont\bfseries}
+
+% Alterando a capa
+\renewcommand{\imprimircapa}{%
+\begin{capa}%
+    \center
+    \includegraphics[scale=0.04]{figures/brasao-ufrn.png}\\
+    \begin{minipage}[t]{0.85\textwidth}
+        \center
+        \MakeUppercase{\imprimiruniversidade}\\
+        \MakeUppercase{\imprimircentro}\\
+        \MakeUppercase{\imprimirprograma}
+    \end{minipage}
+
+    \vspace*{4cm}
+    \begin{center}
+    \ABNTEXchapterfont\LARGE\imprimirtitulo
+    \end{center}
+    
+    \vspace*{4cm}
+    
+    {\ABNTEXchapterfont\large\imprimirautor}
+    
+    \vspace*{4cm}
+    
+    \normalfont\imprimirlocal\\
+    \normalfont\imprimirdata
+    
+    \vspace*{1cm}
+  \end{capa}
+}
+
+% Folha de rosto 
+\makeatletter
+
+\renewcommand{\folhaderostocontent}{
+\begin{center}
+{\ABNTEXchapterfont\large\imprimirautor}
+\vspace*{\fill}\vspace*{\fill}
+
+\begin{center}
+\ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+\end{center}
+
+\vspace*{\fill}
+
+\abntex@ifnotempty{\imprimirpreambulo}{%
+  \hspace{.45\textwidth}
+  \begin{minipage}{.5\textwidth}
+  \SingleSpacing
+  \imprimirpreambulo
+  \end{minipage}%
+  \vspace*{\fill}
+}%
+
+{\normalfont\imprimirorientadorRotulo~\imprimirorientador\par}
+
+\abntex@ifnotempty{\imprimircoorientador}{%
+  {\normalfont\imprimircoorientadorRotulo~\imprimircoorientador}%
+}%
+
+\vspace*{\fill}
+
+{\normalfont\imprimirlocal}
+
+\par
+
+{\normalfont\imprimirdata}
+\vspace*{1cm}
+\end{center}
+}
+
+\setlength{\ABNTEXsignwidth}{10cm}
+
+\makeatother
