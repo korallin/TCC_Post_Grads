@@ -4,95 +4,15 @@
 \chapter{Introdução}
 % ----------------------------------------------------------
 
-Este documento e seu código-fonte são exemplos de referência de uso da classe
-\textsf{abntex2} e do pacote \textsf{abntex2cite}. O documento 
-exemplifica a elaboração de trabalho acadêmico (tese, dissertação e outros do
-gênero) produzido conforme a ABNT NBR 14724:2011 \emph{Informação e documentação
-- Trabalhos acadêmicos - Apresentação}.
-
-A expressão ``Modelo Canônico'' é utilizada para indicar que \abnTeX\ não é
-modelo específico de nenhuma universidade ou instituição, mas que implementa tão
-somente os requisitos das normas da ABNT. Uma lista completa das normas
-observadas pelo \abnTeX\ é apresentada em \citeonline{abntex2classe}.
-
-Sinta-se convidado a participar do projeto \abnTeX! Acesse o site do projeto em
-\url{http://www.abntex.net.br/}. Também fique livre para conhecer,
-estudar, alterar e redistribuir o trabalho do \abnTeX, desde que os arquivos
-modificados tenham seus nomes alterados e que os créditos sejam dados aos
-autores originais, nos termos da ``The \LaTeX\ Project Public
-License''\footnote{\url{http://www.latex-project.org/lppl.txt}}.
-
-Encorajamos que sejam realizadas customizações específicas deste exemplo para
-universidades e outras instituições --- como capas, folha de aprovação, etc.
-Porém, recomendamos que ao invés de se alterar diretamente os arquivos do
-\abnTeX, distribua-se arquivos com as respectivas customizações.
-Isso permite que futuras versões do \abnTeX~não se tornem automaticamente
-incompatíveis com as customizações promovidas. Consulte
-\citeonline{abntex2-wiki-como-customizar} para mais informações.
-
-Este documento deve ser utilizado como complemento dos manuais do \abnTeX\ 
-\cite{abntex2classe,abntex2cite,abntex2cite-alf} e da classe \textsf{memoir}
-\cite{memoir}. 
-
-Esperamos, sinceramente, que o \abnTeX\ aprimore a qualidade do trabalho que
-você produzirá, de modo que o principal esforço seja concentrado no principal:
-na contribuição científica.
-
-Equipe \abnTeX 
-
-Lauro César Araujo
+Atualmente na Justiça Federal do Rio Grande do Norte (JFRN) existe a necessidade de se monitorar o que entra nas Varas espalhadas pelo Estado, isso é importante para se entender qual tipo de demanda é mais comum, assim, distribuindo melhor os recursos disponíveis. Uma das estratégias usadas para entender o que está acontecendo melhor nas Varas é ver as demandas repetitivas, esse tipo de demanda pode atrapalhar o fluxo de trabalho por que, frequentemente, acontece em grande volume demandando bastante esforço para ser resolvido. Então, é interessante que haja uma forma de visualizar algum tipo de demanda que distoa das outras ao longo de determinado período de tempo, mensalmente digamos, para que a Justiça consiga agir mais rapidamente, impedindo que essa massa de processos cresça demasiadamente. A ideia nesse trabalho é criar uma forma de visualizar esses dados de forma simples, fácil e leve, e que não seja necessário ser de T.I. para mexer nesse painel.
 
 % ---
 % Capitulo com exemplos de comandos inseridos de arquivo externo 
 % ---
-\include{abntex2-modelo-include-comandos}
+\include{./capitulos/cap01}
+\include{./capitulos/cap02}
+\include{./capitulos/cap03}
 % ---
-
-\chapter{Conteúdos específicos do modelo de trabalho acadêmico}\label{cap_trabalho_academico}
-
-\section{Quadros}
-
-Este modelo vem com o ambiente \texttt{quadro} e impressão de Lista de quadros 
-configurados por padrão. Verifique um exemplo de utilização:
-
-\begin{quadro}[htb]
-\caption{\label{quadro_exemplo}Exemplo de quadro}
-\begin{tabular}{|c|c|c|c|}
-	\hline
-	\textbf{Pessoa} & \textbf{Idade} & \textbf{Peso} & \textbf{Altura} \\ \hline
-	Marcos & 26    & 68   & 178    \\ \hline
-	Ivone  & 22    & 57   & 162    \\ \hline
-	...    & ...   & ...  & ...    \\ \hline
-	Sueli  & 40    & 65   & 153    \\ \hline
-\end{tabular}
-\fonte{Autor.}
-\end{quadro}
-
-Este parágrafo apresenta como referenciar o quadro no texto, requisito
-obrigatório da ABNT. 
-Primeira opção, utilizando \texttt{autoref}: Ver o \autoref{quadro_exemplo}. 
-Segunda opção, utilizando  \texttt{ref}: Ver o Quadro \ref{quadro_exemplo}.
-
-\chapter{Lorem ipsum dolor sit amet}
-
-\section{Aliquam vestibulum fringilla lorem}
-\lipsum[1]
-
-\lipsum[2-3]
-
-\chapter{Lectus lobortis condimentum}
-
-\section{Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-posuere cubilia Curae}
-\lipsum[21-22]
-
-\chapter{Nam sed tellus sit amet lectus urna ullamcorper tristique interdum
-elementum}
-
-\section{Pellentesque sit amet pede ac sem eleifend consectetuer}
-
-\lipsum[24]
-
 % ----------------------------------------------------------
 % Finaliza a parte no bookmark do PDF
 % para que se inicie o bookmark na raiz

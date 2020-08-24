@@ -1,7 +1,9 @@
 This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
-A level-1 auxiliary file: abntex2-modelo-include-comandos.aux
+A level-1 auxiliary file: ./capitulos/cap01.aux
+A level-1 auxiliary file: ./capitulos/cap02.aux
+A level-1 auxiliary file: ./capitulos/cap03.aux
 The style file: abntex2-alf.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -23,44 +25,44 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 14 entries,
+You've used 1 entry,
             6714 wiz_defined-function locations,
-            1269 strings with 11443 characters,
-and the built_in function-call counts, 12772 in all, are:
-= -- 1492
-> -- 171
-< -- 245
-+ -- 350
-- -- 55
-* -- 777
-:= -- 1656
-add.period$ -- 56
-call.type$ -- 14
-change.case$ -- 94
-chr.to.int$ -- 17
-cite$ -- 13
-duplicate$ -- 1091
-empty$ -- 736
-format.name$ -- 255
-if$ -- 2746
-int.to.chr$ -- 3
+            1200 strings with 9400 characters,
+and the built_in function-call counts, 891 in all, are:
+= -- 192
+> -- 0
+< -- 0
++ -- 46
+- -- 0
+* -- 36
+:= -- 175
+add.period$ -- 0
+call.type$ -- 1
+change.case$ -- 3
+chr.to.int$ -- 1
+cite$ -- 0
+duplicate$ -- 3
+empty$ -- 40
+format.name$ -- 0
+if$ -- 204
+int.to.chr$ -- 0
 int.to.str$ -- 0
-missing$ -- 209
-newline$ -- 73
-num.names$ -- 45
-pop$ -- 225
+missing$ -- 10
+newline$ -- 8
+num.names$ -- 0
+pop$ -- 28
 preamble$ -- 1
-purify$ -- 44
+purify$ -- 3
 quote$ -- 0
-skip$ -- 1184
+skip$ -- 80
 stack$ -- 1
-substring$ -- 527
-swap$ -- 401
-text.length$ -- 9
+substring$ -- 49
+swap$ -- 0
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
+type$ -- 0
 warning$ -- 0
-while$ -- 67
+while$ -- 2
 width$ -- 0
-write$ -- 211
+write$ -- 8

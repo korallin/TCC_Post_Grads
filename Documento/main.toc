@@ -9,80 +9,39 @@
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Introdução}}{16}{chapter.1}%
+\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Introdução}}{15}{chapter.1}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Resultados de comandos}}{17}{chapter.2}%
-\precistoctext {Isto é uma sinopse de capítulo. A ABNT não traz nenhuma normatização a respeito desse tipo de resumo, que é mais comum em romances e livros técnicos.}
-\contentsline {section}{\numberline {2.1}Codificação dos arquivos: UTF8}{17}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Citações diretas}{17}{section.2.2}%
-\babel@toc {english}{}
-\babel@toc {brazil}{}
-\contentsline {section}{\numberline {2.3}Notas de rodapé}{18}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Tabelas}{18}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Figuras}{19}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Figuras em \emph {minipages}}{19}{subsection.2.5.1}%
-\contentsline {section}{\numberline {2.6}Expressões matemáticas}{20}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Enumerações: alíneas e subalíneas}{21}{section.2.7}%
-\contentsline {section}{\numberline {2.8}Espaçamento entre parágrafos e linhas}{22}{section.2.8}%
-\contentsline {section}{\numberline {2.9}Inclusão de outros arquivos}{22}{section.2.9}%
-\contentsline {section}{\numberline {2.10}Compilar o documento \LaTeX }{23}{section.2.10}%
-\contentsline {section}{\numberline {2.11}Remissões internas}{23}{section.2.11}%
-\contentsline {section}{\numberline {2.12}Divisões do documento: seção}{24}{section.2.12}%
-\contentsline {subsection}{\numberline {2.12.1}Divisões do documento: subseção}{24}{subsection.2.12.1}%
-\contentsline {subsubsection}{\numberline {2.12.1.1}Divisões do documento: subsubseção}{24}{subsubsection.2.12.1.1}%
-\contentsline {subsubsection}{\numberline {2.12.1.2}Divisões do documento: subsubseção}{24}{subsubsection.2.12.1.2}%
-\contentsline {subsection}{\numberline {2.12.2}Divisões do documento: subseção}{24}{subsection.2.12.2}%
-\contentsline {subsubsection}{\numberline {2.12.2.1}Divisões do documento: subsubseção}{24}{subsubsection.2.12.2.1}%
-\contentsline {paragraph}{\numberline {2.12.2.1.1}Esta é uma subseção de quinto nível}{24}{paragraph.2.12.2.1.1}%
-\contentsline {paragraph}{\numberline {2.12.2.1.2}Esta é outra subseção de quinto nível}{24}{paragraph.2.12.2.1.2}%
-\contentsline {paragraph}{\numberline {2.12.2.1.3}Este é um parágrafo numerado}{24}{paragraph.2.12.2.1.3}%
-\contentsline {paragraph}{\numberline {2.12.2.1.4}Esta é outro parágrafo numerado}{25}{paragraph.2.12.2.1.4}%
-\contentsline {section}{\numberline {2.13}Este é um exemplo de nome de seção longo. Ele deve estar alinhado à esquerda e a segunda e demais linhas devem iniciar logo abaixo da primeira palavra da primeira linha}{25}{section.2.13}%
-\contentsline {section}{\numberline {2.14}Diferentes idiomas e hifenizações}{25}{section.2.14}%
-\contentsline {section}{\numberline {2.15}Consulte o manual da classe \textsf {abntex2}}{27}{section.2.15}%
-\contentsline {section}{\numberline {2.16}Referências bibliográficas}{27}{section.2.16}%
-\contentsline {subsection}{\numberline {2.16.1}Acentuação de referências bibliográficas}{27}{subsection.2.16.1}%
-\contentsline {section}{\numberline {2.17}Precisa de ajuda?}{27}{section.2.17}%
-\contentsline {section}{\numberline {2.18}Você pode ajudar?}{28}{section.2.18}%
-\contentsline {section}{\numberline {2.19}Quer customizar os modelos do abn\TeX 2\ para sua instituição ou universidade?}{28}{section.2.19}%
+\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Ferramentas de criação de painéis}}{16}{chapter.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Conteúdos específicos do modelo de trabalho acadêmico}}{29}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Quadros}{29}{section.3.1}%
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Dash e Plotly na criação de painéis}}{17}{chapter.3}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Lorem ipsum dolor sit amet}}{30}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Aliquam vestibulum fringilla lorem}{30}{section.4.1}%
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Lectus lobortis condimentum}}{31}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae}{31}{section.5.1}%
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Nam sed tellus sit amet lectus urna ullamcorper tristique interdum elementum}}{32}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Pellentesque sit amet pede ac sem eleifend consectetuer}{32}{section.6.1}%
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Atualização e limpeza de dados}}{18}{chapter.4}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {7}\MakeTextUppercase {Conclusão}}{33}{chapter.7}%
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Conclusão}}{19}{chapter.5}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\MakeTextUppercase {Refer\^encias}}{34}{section*.21}%
+\contentsline {chapter}{\MakeTextUppercase {Refer\^encias}}{20}{section*.21}%
 \renewcommand *{\cftappendixname }{AP\^ENDICE \space }
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase {Quisque libero justo}}{36}{appendix.A}%
+\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase {Quisque libero justo}}{21}{appendix.A}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {B}\MakeTextUppercase {Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula ac pretium ante justo a nulla curabitur tristique arcu eu metus}}{37}{appendix.B}%
+\contentsline {appendix}{\chapternumberline {B}\MakeTextUppercase {Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula ac pretium ante justo a nulla curabitur tristique arcu eu metus}}{22}{appendix.B}%
 \cftinsert {AAA}
 \renewcommand *{\cftappendixname }{ANEXO \space }
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase {Morbi ultrices rutrum lorem.}}{38}{appendix.anexochapback.1}%
+\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase {Morbi ultrices rutrum lorem.}}{23}{appendix.anexochapback.1}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {B}\MakeTextUppercase {Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus}}{39}{appendix.anexochapback.2}%
+\contentsline {appendix}{\chapternumberline {B}\MakeTextUppercase {Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus}}{24}{appendix.anexochapback.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {C}\MakeTextUppercase {Fusce facilisis lacinia dui}}{40}{appendix.anexochapback.3}%
+\contentsline {appendix}{\chapternumberline {C}\MakeTextUppercase {Fusce facilisis lacinia dui}}{25}{appendix.anexochapback.3}%
