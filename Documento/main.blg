@@ -1,0 +1,66 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+A level-1 auxiliary file: abntex2-modelo-include-comandos.aux
+The style file: abntex2-alf.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Database file #1: abntex2-options.bib
+Database file #2: abntex2-modelo-references.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
++---------------------------------------------------------+
+| Estilo bibliográfico abntex2-alf.bst versão v-1.9.7           |
+| Em caso de dúvidas ou problemas com este estilo procure |
+| http://www.abntex.net.br/                               |
++---------------------------------------------------------+
+You've used 14 entries,
+            6714 wiz_defined-function locations,
+            1269 strings with 11443 characters,
+and the built_in function-call counts, 12772 in all, are:
+= -- 1492
+> -- 171
+< -- 245
++ -- 350
+- -- 55
+* -- 777
+:= -- 1656
+add.period$ -- 56
+call.type$ -- 14
+change.case$ -- 94
+chr.to.int$ -- 17
+cite$ -- 13
+duplicate$ -- 1091
+empty$ -- 736
+format.name$ -- 255
+if$ -- 2746
+int.to.chr$ -- 3
+int.to.str$ -- 0
+missing$ -- 209
+newline$ -- 73
+num.names$ -- 45
+pop$ -- 225
+preamble$ -- 1
+purify$ -- 44
+quote$ -- 0
+skip$ -- 1184
+stack$ -- 1
+substring$ -- 527
+swap$ -- 401
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 4
+warning$ -- 0
+while$ -- 67
+width$ -- 0
+write$ -- 211

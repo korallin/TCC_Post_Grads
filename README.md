@@ -27,4 +27,13 @@ To Do:
 - Terminar o curso de PostgreSQL da Udemy
 - Pesquisar materiais de criação de Dashboards usando Python
 
+Parte escrita:
+
+Antes de compilar os arquivos, lembre de executar os passos abaixo no console para garantir que o idioma e os pacotes estão instalados, lembrando que tudo feito aqui foi usando o Ubuntu 20.04
+
+```console
+sudo apt -y install texlive-lang-portuguese
+sudo apt-get install texlive-full
+```
+
 <s>Vai ser fácil!</s>
