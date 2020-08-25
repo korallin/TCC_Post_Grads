@@ -23,11 +23,13 @@ Objetivo da entrega:
 
 To Do:
 
-- Estudar os códigos das estudantes de Iniciação Científica do Professor Elias
-- Terminar o curso de PostgreSQL da Udemy
-- Pesquisar materiais de criação de Dashboards usando Python
+<s>- Estudar os códigos das estudantes de Iniciação Científica do Professor Elias</s>
+<s>- Terminar o curso de PostgreSQL da Udemy</s>
+- Pesquisar materiais de criação de Dashboards usando Python - trabalho constante
+- Melhorar o visual do painel
+<s>- Fazer deploy na infra da JF</s>
 
-Parte escrita:
+Parte escrita (em .tex):
 
 Antes de compilar os arquivos, lembre de executar os passos abaixo no console para garantir que o idioma e os pacotes estão instalados, lembrando que tudo feito aqui foi usando o Ubuntu 20.04
 
