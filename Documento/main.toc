@@ -13,9 +13,9 @@
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Ferramentas de criação de painéis}}{16}{chapter.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Dash e Plotly na criação de painéis}}{17}{chapter.3}%
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Dash e Plotly}}{17}{chapter.3}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Atualização e limpeza de dados}}{18}{chapter.4}%
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Limpeza de dados}}{18}{chapter.4}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Conclusão}}{19}{chapter.5}%

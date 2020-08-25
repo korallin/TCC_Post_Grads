@@ -17,7 +17,8 @@ USERNAME_PASSWORD_PAIRS = [
     ['EliasJacob', 'PinkFloyd1973']
 ]
 
-app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
+app = dash.Dash(__name__, external_stylesheets=["https://codepen.io/chriddyp/pen/bWLwgP.css",
+"/assets/style.css"])
 #app=dash.Dash()
 #external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 #app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
