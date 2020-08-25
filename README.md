@@ -23,11 +23,11 @@ Objetivo da entrega:
 
 To Do:
 
-<s>- Estudar os códigos das estudantes de Iniciação Científica do Professor Elias</s>
-<s>- Terminar o curso de PostgreSQL da Udemy</s>
+- <s>Estudar os códigos das estudantes de Iniciação Científica do Professor Elias</s>
+- <s>Terminar o curso de PostgreSQL da Udemy</s>
 - Pesquisar materiais de criação de Dashboards usando Python - trabalho constante
 - Melhorar o visual do painel
-<s>- Fazer deploy na infra da JF</s>
+- <s>Fazer deploy na infra da JF</s>
 
 Parte escrita (em .tex):
 
