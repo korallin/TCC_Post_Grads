@@ -89,6 +89,40 @@ sidebar = html.Div(
 
 content_first_row = dbc.Row([
     dbc.Col(
+        dbc.Card(
+            [   dbc.CardHeader("JFRN"),
+                dbc.CardBody(
+                    [
+                        html.P("Clique abaixo e se informe mais sobre a JFRN", style=CARD_TEXT_STYLE),
+                        dbc.CardLink("Centro de Inteligência", href="https://www.jfrn.jus.br/")
+                    ]
+                )
+            ],
+            color="info",
+            outline=True
+        ),md=3
+    ),
+    dbc.Col(
+        dbc.Card(
+            [   dbc.CardHeader("Centro de Inteligência"),
+                dbc.CardBody(
+                    [
+                        html.P("Clique aqui e conheça melhor o Centro de Inteligência da JFRN", style=CARD_TEXT_STYLE),
+                        dbc.CardLink("Centro de Inteligência", href="https://centrodeinteligencia.jfrn.jus.br/jfrn/#/")
+
+                    ]
+                )
+            ],
+            color="info",
+            outline=True
+        ),md=3
+    )
+])
+
+
+
+content_second_row = dbc.Row([
+    dbc.Col(
         html.Div([dcc.Graph(id='grafico_1',responsive=True)],style={"border":"2px black solid"}),
     ),
     dbc.Col(
@@ -102,8 +136,8 @@ content = html.Div(
     [
         html.H2('Painel do Centro de Inteligência', style=TEXT_STYLE),
         html.Hr(),
-        content_first_row
-        #content_second_row,
+        content_first_row,
+        content_second_row
         #content_third_row,
         #content_fourth_row
     ],
