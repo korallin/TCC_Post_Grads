@@ -16,11 +16,6 @@ USERNAME_PASSWORD_PAIRS = [
 
 dados_varas = pd.read_csv('../dados-pje-MPF.csv',dtype='unicode')
 
-dados_varas = dados_varas.drop(['Unnamed: 0', '%ID_PROCESSO_TRF', 'Sistema',
-'Parte Polo Ativo?', 'Parte Polo Passivo?','Parte Outros Participantes?',
-'Parte Documento', 'Parte Descrição', '%ID_PESSOA_REU',
-'Data Trânsito Julgado', 'Número Tempo em Anos'], axis=1)
-
 dados_varas['ano_primeira_dist'] = pd.DatetimeIndex(dados_varas['Data Primeira Distribuição']).year
 
 dados_varas=dados_varas[dados_varas.ano_primeira_dist > 2014]
@@ -148,6 +143,14 @@ content_second_row = dbc.Row([
         html.Div([dcc.Graph(id='grafico_2',responsive=True)],style={"border":"2px black solid"})
         )
 ])
+
+content_third_row = dbc.Row(
+    [
+        dbc.Col(
+            dcc.Graph(id='grafico_3'), md=12,
+        )
+    ]
+)
 '''
 import plotly.express as px
 df = px.data.gapminder().query("year == 2007").query("continent == 'Europe'")
@@ -164,7 +167,7 @@ content = html.Div(
         html.Hr(),
         content_first_row,
         content_second_row
-        #content_third_row,
+        content_third_row
         #content_fourth_row
     ],
     style=CONTENT_STYLE
@@ -233,6 +236,33 @@ def update_figure_2(ano_escolhido):
                                xaxis = {'title':'Órgão Julgador','categoryorder':'category ascending'},
                                yaxis = {'title':'Total de Processos'},
                                barmode='stack')}
+
+'''
+#dataframe['name'].value_counts().nlargest(n)
+#df.groupby(['Animal']).mean()
+#df.groupby('State')['Population'].apply(lambda grp: grp.nlargest(2).sum())
+@app.callback(Output('grafico_3','figure'),
+             [Input('escolhe-ano','value')])
+def update_figure_2(ano_escolhido):
+    vara_agrupada = dados_varas[dados_varas['ano_primeira_dist']==ano_escolhido]
+    vara_agrupada.groupby('Órgão Julgador')['Assunto'].nlargest(5))
+
+    traces_vara = []
+    for assunto_vara in ano_selecionado['Assunto'].unique():
+        vara_agrupada = ano_selecionado[ano_selecionado['Assunto']==assunto_vara]
+        traces_vara.append(go.Bar(
+               x=vara_filtrada['Órgão Julgador'],
+               y=vara_filtrada['Assunto'],
+               showlegend=False
+         ))
+
+    return {'data':traces_vara,
+            'layout':go.Layout(title= 'Distribuição de processos pelos Órgãos Julgadores no ano {}'.format(ano_escolhido),
+                               xaxis = {'title':'Órgão Julgador','categoryorder':'category ascending'},
+                               yaxis = {'title':'Total de Processos'},
+                               barmode='stack')}
+'''
+
 
 
 if __name__ == '__main__':
