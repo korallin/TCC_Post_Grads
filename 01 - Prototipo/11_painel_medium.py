@@ -93,32 +93,46 @@ content_first_row = dbc.Row([
             [   dbc.CardHeader("JFRN"),
                 dbc.CardBody(
                     [
-                        html.P("Clique abaixo e se informe mais sobre a JFRN", style=CARD_TEXT_STYLE),
-                        dbc.CardLink("Centro de Inteligência", href="https://www.jfrn.jus.br/")
+                        html.P("Clique abaixo e visite o site da JFRN", style=CARD_TEXT_STYLE),
+                        dbc.Button("JFRN", href="https://www.jfrn.jus.br/", color="primary")
                     ]
                 )
             ],
             color="info",
             outline=True
-        ),md=3
+        ),md=4
     ),
     dbc.Col(
         dbc.Card(
             [   dbc.CardHeader("Centro de Inteligência"),
                 dbc.CardBody(
                     [
-                        html.P("Clique aqui e conheça melhor o Centro de Inteligência da JFRN", style=CARD_TEXT_STYLE),
-                        dbc.CardLink("Centro de Inteligência", href="https://centrodeinteligencia.jfrn.jus.br/jfrn/#/")
+                        html.P("Acesse o Centro de Int. da JFRN", style=CARD_TEXT_STYLE),
+                        dbc.Button("Centro de Inteligência", href="https://centrodeinteligencia.jfrn.jus.br/jfrn/#/",color="primary")
 
                     ]
                 )
             ],
             color="info",
             outline=True
-        ),md=3
+        ),md=4
+    ),
+    dbc.Col(
+        dbc.Card(
+            [   dbc.CardHeader("Residência T.I."),
+                dbc.CardBody(
+                    [
+                        html.P("Conheça melhor a Residência em TI", style=CARD_TEXT_STYLE),
+                        dbc.Button("Residência em TI", href="https://residencia.jfrn.jus.br/",color="primary")
+
+                    ]
+                )
+            ],
+            color="info",
+            outline=True
+        ),md=4
     )
 ])
-
 
 
 content_second_row = dbc.Row([
@@ -129,7 +143,14 @@ content_second_row = dbc.Row([
         html.Div([dcc.Graph(id='grafico_2',responsive=True)],style={"border":"2px black solid"})
         )
 ])
+'''
+import plotly.express as px
+df = px.data.gapminder().query("year == 2007").query("continent == 'Europe'")
+df.loc[df['pop'] < 2.e6, 'country'] = 'Other countries' # Represent only large countries
+fig = px.pie(df, values='pop', names='country', title='Population of European continent')
+fig.show()
 
+'''
 
 
 content = html.Div(
@@ -183,7 +204,7 @@ def update_figure(vara_selecionada,ano_escolhido):
 
     return {'data':traces,
             'layout':go.Layout(title= {"text": "Distribuição de processos por mês da {}".format(vara_selecionada)},
-                               xaxis = {'title':'Mês da distrubuição','categoryorder':'category ascending'},
+                               xaxis = {'title':'Mês da distribuição','categoryorder':'category ascending'},
                                yaxis = {'title':'Assunto','visible':False},
                                barmode='stack')}
 
