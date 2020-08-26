@@ -16,7 +16,7 @@ USERNAME_PASSWORD_PAIRS = [
 
 dados_varas = pd.read_csv('../dados-pje-MPF.csv',dtype='unicode')
 
-dados_varas = dados_varas.drop(['Unnamed: 0', '%ID_PROCESSO_TRF', 'Sistema',
+dados_varas = dados_varas.drop(['%ID_PROCESSO_TRF', 'Sistema',
 'Parte Polo Ativo?', 'Parte Polo Passivo?','Parte Outros Participantes?',
 'Parte Documento', 'Parte Descrição', '%ID_PESSOA_REU',
 'Data Trânsito Julgado', 'Número Tempo em Anos'], axis=1)
