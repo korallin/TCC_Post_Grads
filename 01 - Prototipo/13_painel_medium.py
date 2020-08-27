@@ -4,6 +4,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
+import dash_table as dt
 import pandas as pd
 from numpy import random
 import plotly.graph_objs as go
@@ -41,49 +42,7 @@ opcoes_vara = []
 for vara in dados_varas['Órgão Julgador'].unique():
     opcoes_vara.append({'label':str(vara),'value':vara})
 
-dados_1a_vara = dados_varas[dados_varas['Órgão Julgador'] == '1ª Vara Federal']
-dados_2a_vara = dados_varas[dados_varas['Órgão Julgador'] == '2ª Vara Federal']
-dados_4a_vara = dados_varas[dados_varas['Órgão Julgador'] == '4ª Vara Federal']
-dados_5a_vara = dados_varas[dados_varas['Órgão Julgador'] == '5ª Vara Federal']
-dados_6a_vara = dados_varas[dados_varas['Órgão Julgador'] == '6ª Vara Federal']
-dados_8a_vara = dados_varas[dados_varas['Órgão Julgador'] == '8ª Vara Federal']
-dados_9a_vara = dados_varas[dados_varas['Órgão Julgador'] == '9ª Vara Federal']
-dados_10a_vara = dados_varas[dados_varas['Órgão Julgador'] == '10ª Vara Federal']
-dados_11a_vara = dados_varas[dados_varas['Órgão Julgador'] == '11ª Vara Federal']
-dados_12a_vara = dados_varas[dados_varas['Órgão Julgador'] == '12ª Vara Federal']
-dados_14a_vara = dados_varas[dados_varas['Órgão Julgador'] == '14ª Vara Federal']
-dados_15a_vara = dados_varas[dados_varas['Órgão Julgador'] == '15ª Vara Federal']
 
-
-top_geral = dados_varas['Assunto'].value_counts()[:5].index.tolist()
-top_1a_vara = dados_1a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_2a_vara = dados_2a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_4a_vara = dados_4a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_5a_vara = dados_5a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_6a_vara = dados_6a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_8a_vara = dados_8a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_9a_vara = dados_9a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_10a_vara = dados_10a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_11a_vara = dados_11a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_12a_vara = dados_12a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_14a_vara = dados_14a_vara['Assunto'].value_counts()[:5].index.tolist()
-top_15a_vara = dados_15a_vara['Assunto'].value_counts()[:5].index.tolist()
-
-dados_por_vara = pd.DataFrame({
-
-                 "1ª Vara Federal":top_1a_vara,
-                 "2ª Vara Federal":top_2a_vara,
-                 "4ª Vara Federal":top_4a_vara,
-                 "5ª Vara Federal":top_5a_vara,
-                 "6ª Vara Federal":top_6a_vara,
-                 "8ª Vara Federal":top_8a_vara,
-                 "9ª Vara Federal":top_9a_vara,
-                 "10ª Vara Federal":top_10a_vara,
-                 "11ª Vara Federal":top_11a_vara,
-                 "12ª Vara Federal":top_12a_vara,
-                 "14ª Vara Federal":top_14a_vara,
-                 "15ª Vara Federal":top_15a_vara
-})
 # the style arguments for the sidebar.
 SIDEBAR_STYLE = {
     'position': 'fixed',
@@ -187,10 +146,6 @@ content_second_row = dbc.Row([
         )
 ])
 
-content_third_row = dbc.Row([
-
-            dbc.Table.from_dataframe(dados_por_vara, striped=True, bordered=True, hover=True)
-])
 '''
 import plotly.express as px
 df = px.data.gapminder().query("year == 2007").query("continent == 'Europe'")
@@ -200,14 +155,28 @@ fig.show()
 
 '''
 
+content_third_row = dbc.Row([
+        dbc.Col(
+        html.Div([
+        html.Div(id="table1"),
+        html.Div([
+        html.Button(id='submit-button',
+                    children='Submit'
+    )
+    ]),
+
+])
+        ,md=12)
+])
+
 content = html.Div(
     [
         html.H2('Painel do Centro de Inteligência', style=TEXT_STYLE),
         html.Hr(),
         content_first_row,
         content_second_row,
-        content_third_row,
-        content_fourth_row
+        content_third_row
+
     ],
     style=CONTENT_STYLE
 )
@@ -276,6 +245,63 @@ def update_figure_2(ano_escolhido):
                                yaxis = {'title':'Total de Processos'},
                                barmode='stack')}
 
+
+@app.callback(Output('table1','children'),
+            [Input('submit-button','n_clicks'),
+            Input('escolhe-ano','value')],
+            [State('submit-button','n_clicks')])
+def update_datatable(n_clicks,ano_escolhido,csv_file):
+
+    if n_clicks:
+
+        ajustes_dados = dados_varas[dados_varas['ano_primeira_dist']==ano_escolhido]
+
+        dados_1a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '1ª Vara Federal']
+        dados_2a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '2ª Vara Federal']
+        dados_4a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '4ª Vara Federal']
+        dados_5a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '5ª Vara Federal']
+        dados_6a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '6ª Vara Federal']
+        dados_8a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '8ª Vara Federal']
+        dados_9a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '9ª Vara Federal']
+        dados_10a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '10ª Vara Federal']
+        dados_11a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '11ª Vara Federal']
+        dados_12a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '12ª Vara Federal']
+        dados_14a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '14ª Vara Federal']
+        dados_15a_vara = ajustes_dados[ajustes_dados['Órgão Julgador'] == '15ª Vara Federal']
+
+
+        top_geral = ajustes_dados['Assunto'].value_counts()[:5].index.tolist()
+        top_1a_vara = dados_1a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_2a_vara = dados_2a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_4a_vara = dados_4a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_5a_vara = dados_5a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_6a_vara = dados_6a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_8a_vara = dados_8a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_9a_vara = dados_9a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_10a_vara = dados_10a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_11a_vara = dados_11a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_12a_vara = dados_12a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_14a_vara = dados_14a_vara['Assunto'].value_counts()[:5].index.tolist()
+        top_15a_vara = dados_15a_vara['Assunto'].value_counts()[:5].index.tolist()
+
+        dados_por_vara = pd.DataFrame({
+
+                         "1ª Vara Federal":top_1a_vara,
+                         "2ª Vara Federal":top_2a_vara,
+                         "4ª Vara Federal":top_4a_vara,
+                         "5ª Vara Federal":top_5a_vara,
+                         "6ª Vara Federal":top_6a_vara,
+                         "8ª Vara Federal":top_8a_vara,
+                         "9ª Vara Federal":top_9a_vara,
+                         "10ª Vara Federal":top_10a_vara,
+                         "11ª Vara Federal":top_11a_vara,
+                         "12ª Vara Federal":top_12a_vara,
+                         "14ª Vara Federal":top_14a_vara,
+                         "15ª Vara Federal":top_15a_vara
+        })
+        data = dados_por_vara.to_dict('rows')
+        columns =  [{"name": i, "id": i,} for i in (dados_por_vara.columns)]
+        return dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'})
 
 
 if __name__ == '__main__':
