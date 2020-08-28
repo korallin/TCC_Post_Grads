@@ -141,8 +141,11 @@ content_first_row = dbc.Row([
 content_second_row = dbc.Row([
     dbc.Col(
         html.Div([dcc.Graph(id='grafico_1',responsive=True)],style={"border":"2px black solid"}),
-    )])
-
+    ),
+    dbc.Col(
+        html.Div([dcc.Graph(id='grafico_2',responsive=True)],style={"border":"2px black solid"})
+        )
+])
 '''
 import plotly.express as px
 df = px.data.gapminder().query("year == 2007").query("continent == 'Europe'")
@@ -181,7 +184,7 @@ content = html.Div(
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 app.layout = html.Div([sidebar, content])
-
+server = app.server
 
 @app.callback(Output('grafico_1','figure'),
              [Input('escolhe-vara','value'),
@@ -308,4 +311,4 @@ def update_datatable(n_clicks,ano_escolhido,csv_file):
 
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True, port=8050, host='0.0.0.0')

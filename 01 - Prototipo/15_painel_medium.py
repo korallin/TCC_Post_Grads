@@ -171,7 +171,9 @@ content = html.Div(
         html.H2('Painel do Centro de Inteligência', style=TEXT_STYLE),
         html.Hr(),
         content_first_row,
+        html.Hr(),
         content_second_row,
+        html.Hr(),
         content_third_row
     ],
     style=CONTENT_STYLE
