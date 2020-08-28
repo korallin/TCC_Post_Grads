@@ -34,18 +34,17 @@ dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(10,'
 dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(11,'11 - Nov')
 dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(12,'12 - Dez')
 
+dados_varas = dados_varas.groupby('mes_primeira_dist')
+traces=[]
 
-
-#agrupado_por_mes = dados_varas.groupby('mes_primeira_dist')
-dados_varas.sort_values(['mes_primeira_dist'])
-dados_varas.groupby('mes_primeira_dist')['Assunto'].apply(lambda x: x.value_counts()[:5])
-
-data = go.Bar(x=dados_varas['mes_primeira_dist'],
-              y=dados_varas.groupby('mes_primeira_dist')['Assunto'].apply(lambda x: x.value_counts()[:5]),
-              name='Processos por mês',
-              marker={'color':'#FFD700'})
+for meses in dados_varas['mes_primeira_dist'].unique():
+    traces.append(go.Bar(
+           x=dados_varas['mes_primeira_dist'],
+           y=dados_varas['Assunto'].value_counts()[:5].index.tolist(),
+           showlegend=False
+     ))
 
 layout = go.Layout(title='Medals',barmode='stack')
-fig = go.Figure(data=data,layout=layout)
+fig = go.Figure(data=traces,layout=layout)
 
 pyo.plot(fig,filename='04_bar_chart.html')
