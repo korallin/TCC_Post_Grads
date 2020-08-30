@@ -1,0 +1,8 @@
+
+Criar gráfico com o total de processos que entraram na Vara por mês:
+
+ df.groupby('mes').count()
+
+ Gera visualização de
+
+vara_escolhida.groupby(['mes_primeira_dist','Assunto'])['Assunto Código'].value_counts
