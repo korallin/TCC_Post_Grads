@@ -10,6 +10,7 @@ from numpy import random
 import plotly.graph_objs as go
 import numpy as np
 import plotly.express as px
+import matplotlib
 
 USERNAME_PASSWORD_PAIRS = [
     ['EliasJacob', 'PinkFloyd1973']
@@ -169,7 +170,7 @@ content_third_row = dbc.Row([
 
 content_fourth_row = dbc.Row([
     dbc.Col(
-        html.Div([dcc.Graph(id='grafico_3',responsive=True)],style={"border":"2px black solid"}),
+        html.Div(id='grafico_3',style={"border":"2px black solid"}),
     )])
 
 content = html.Div(
@@ -298,19 +299,43 @@ def update_datatable(n_clicks,ano_escolhido,csv_file):
               Input('escolhe-ano','value')])
 def update_figure(vara_selecionada,ano_escolhido):
     #dados apenas para seleção do menu dropdown
-    vara_escolhida = dados_varas[dados_varas['Órgão Julgador']==vara_selecionada]
-    vara_escolhida = vara_escolhida[vara_escolhida['ano_primeira_dist']==ano_escolhido]
 
-    grouped = vara_escolhida.groupby(['mes_primeira_dist', 'Assunto'])['Assunto Código'].count()
-    grouped = grouped.groupby(level='mes_primeira_dist').nlargest(5).reset_index(level=0, drop=True).reset_index()
-    data = go.Bar(x = grouped['mes_primeira_dist'],
-                  y = grouped['Assunto'])
+    dados_varas.sort_values(['mes_primeira_dist'])
 
-    return {'data':data,
-            'layout':go.Layout(title= {"text": "Distribuição de processos por mês da {} no ano {}".format(vara_selecionada,ano_escolhido)},
-                               xaxis = {'title':'Mês da distribuição','categoryorder':'category ascending'},
-                               yaxis = {'title':'Assunto','visible':False},
-                               barmode='stack')}
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(1,'01 - Jan')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(2,'02 - Fev')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(3,'03 - Mar')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(4,'04 - Abr')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(5,'05 - Mai')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(6,'06 - Jun')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(7,'07 - Jul')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(8,'08 - Ago')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(9,'09 - Set')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(10,'10 - Out')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(11,'11 - Nov')
+    dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(12,'12 - Dez')
+
+    vara_escolhida_2 = dados_varas[dados_varas['Órgão Julgador']==vara_selecionada]
+    vara_escolhida_2 = vara_escolhida_2[vara_escolhida_2['ano_primeira_dist']==ano_escolhido]
+
+
+    dados_agrupados = vara_escolhida_2['Assunto'].groupby(vara_escolhida_2['mes_primeira_dist']).value_counts()
+    #dados_agrupados.groupby(level=[0,1]).nlargest(5)
+    #dados_agrupados = dados['Assunto'].groupby(dados['mes_primeira_dist']).value_counts()
+    return {dados_agrupados}
+
+    #grouped = vara_escolhida_2.groupby(['mes_primeira_dist', 'Assunto'])['Assunto Código'].count()
+    #grouped.groupby(level='mes_primeira_dist').nlargest(5).reset_index(level=0, drop=True).reset_index()
+'''
+    data = go.Bar(x = dados_agrupados['mes_primeira_dist'],
+                  y = dados_agrupados['Assunto'])
+
+    layout = go.Layout(title= {"text": "Distribuição de processos por mês da {} no ano {}".format(vara_selecionada,ano_escolhido)},
+                       xaxis = {'title':'Mês da distribuição','categoryorder':'category ascending'},
+                       yaxis = {'title':'Assunto','visible':False},
+                       barmode='stack')
+'''
+    #return {dados_agrupados}
 
 
 if __name__ == '__main__':

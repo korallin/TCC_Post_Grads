@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.8.24)  31 AUG 2020 10:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.8.24)  31 AUG 2020 12:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -945,15 +945,21 @@ l.150
 ]
 \openout2 = `./capitulos/cap02.aux'.
 
- (./capitulos/cap02.tex) [16
+ (./capitulos/cap02.tex
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 4
+.
+
+(/usr/share/texmf/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)) [16
 
 
 
 ]
 \openout2 = `./capitulos/cap03.aux'.
 
-
-(./capitulos/cap03.tex) [17
+ (./capitulos/cap03.tex)
+[17
 
 
 
@@ -987,40 +993,32 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 311.
 (./capitulos/cap03.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 311.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 311.
+Package rerunfilecheck Info: File `main.brf' has not changed.
+(rerunfilecheck)             Checksum: 346E7DAE74B9DE9AC1D072783987CF4C;41.
 
-
-Package rerunfilecheck Warning: File `main.brf' has changed.
-(rerunfilecheck)                Rerun to get bibliographical references right.
-
-Package rerunfilecheck Info: Checksums for `main.brf':
-(rerunfilecheck)             Before: 8CC42B95468947134D3E942E509B6FB1;41
-(rerunfilecheck)             After:  346E7DAE74B9DE9AC1D072783987CF4C;41.
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 311.
  ) 
 Here is how much of TeX's memory you used:
- 14531 strings out of 481239
- 228915 string characters out of 5920377
+ 14567 strings out of 481239
+ 229810 string characters out of 5920377
  721849 words of memory out of 5000000
- 29423 multiletter control sequences out of 15000+600000
- 574347 words of font info for 67 fonts, out of 8000000 for 9000
+ 29456 multiletter control sequences out of 15000+600000
+ 574722 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,12n,43p,1047b,507s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{section*.21} has been referenced but does not exi
-st, replaced by a fixed one
-
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvip
-s/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/t
-exmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/l
-mmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/f
-onts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.p
-fb>
-Output written on main.pdf (20 pages, 500688 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/d
+vips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/shar
+e/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/texmf/fonts/type1/public/lm/lm
+bx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/f
+onts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pf
+b></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb>
+Output written on main.pdf (20 pages, 500672 bytes).
 PDF statistics:
- 239 PDF objects out of 1000 (max. 8388607)
- 208 compressed objects within 3 object streams
- 60 named destinations out of 1000 (max. 500000)
- 12446 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 241 PDF objects out of 1000 (max. 8388607)
+ 210 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
+ 12958 words of extra memory for PDF output out of 14400 (max. 10000000)
 

@@ -1,9 +1,10 @@
+# mostrando o top 5 de assuntos por mês
 import pandas as pd
 import plotly.offline as pyo
 import plotly.graph_objs as go
 
-ano = 2019
-vara = '12ª Vara Federal'
+ano = 2018
+vara = '6ª Vara Federal'
 
 dados_varas = pd.read_csv('../dados-pje-MPF.csv',dtype='unicode')
 
@@ -20,7 +21,6 @@ dados_varas.sort_values(['mes_primeira_dist'])
 dados_varas = dados_varas[dados_varas['Órgão Julgador'] == vara]
 dados_varas = dados_varas[dados_varas['ano_primeira_dist'] == ano]
 
-
 dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(1,'01 - Jan')
 dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(2,'02 - Fev')
 dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(3,'03 - Mar')
@@ -35,13 +35,10 @@ dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(11,'
 dados_varas['mes_primeira_dist'] = dados_varas['mes_primeira_dist'].replace(12,'12 - Dez')
 
 
-grouped = dados_varas.groupby(['mes_primeira_dist', 'Assunto'])['Assunto Código'].count()
-grouped = grouped.groupby(level='mes_primeira_dist').nlargest(8).reset_index(level=0, drop=True).reset_index()
+# parte complicada:
+dados_agrupados = dados_varas['Assunto'].groupby(dados_varas['mes_primeira_dist']).value_counts()
 
-data = go.Bar(x = grouped['mes_primeira_dist'],
-              y = grouped['Assunto'])
+dados_agrupados = dados_agrupados.groupby(level=0).nlargest(5).reset_index(level=0, drop=True)
 
-layout = go.Layout(title='Medals',barmode='stack')
-fig = go.Figure(data=data,layout=layout)
-
-pyo.plot(fig,filename='04_bar_chart.html')
+#ax = dados_agrupados.plot.bar(stacked=True)
+print(dados_agrupados.head(20))
