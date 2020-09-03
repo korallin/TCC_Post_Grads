@@ -4,7 +4,7 @@ import plotly.offline as pyo
 import plotly.graph_objs as go
 
 ano = 2018
-vara = '6ª Vara Federal'
+vara = '12ª Vara Federal'
 
 dados_varas = pd.read_csv('../dados-pje-MPF.csv',dtype='unicode')
 
@@ -41,4 +41,5 @@ dados_agrupados = dados_varas['Assunto'].groupby(dados_varas['mes_primeira_dist'
 dados_agrupados = dados_agrupados.groupby(level=0).nlargest(5).reset_index(level=0, drop=True)
 
 #ax = dados_agrupados.plot.bar(stacked=True)
-print(dados_agrupados.head(20))
+print("a média de processos na {} é: {}".format(vara,dados_agrupados.mean()))
+print("a mediana de processos {} é: {}".format(vara,dados_agrupados.median()))

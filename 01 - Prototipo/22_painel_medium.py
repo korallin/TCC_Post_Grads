@@ -12,11 +12,10 @@ import numpy as np
 import plotly.express as px
 
 USERNAME_PASSWORD_PAIRS = [
-    ['EliasJacob', 'PinkFloyd1973'],
-    ['BrunoSantos', 'GrandeSenha']
+    ['EliasJacob', 'PinkFloyd1973']
 ]
 
-dados_varas = pd.read_csv('dados-pje-MPF.csv',dtype='unicode')
+dados_varas = pd.read_csv('../dados-pje-MPF.csv',dtype='unicode')
 
 dados_varas['ano_primeira_dist'] = pd.DatetimeIndex(dados_varas['Data Primeira Distribuição']).year
 
@@ -140,7 +139,7 @@ content_first_row = dbc.Row([
 
 content_second_row = dbc.Row([
     dbc.Col(
-        html.Div([dcc.Graph(id='grafico1',responsive=True)],style={"border":"2px black solid"}),
+        html.Div([dcc.Graph(id='grafico_1',responsive=True)],style={"border":"2px black solid"}),
     )])
 
 '''
@@ -156,7 +155,7 @@ content_third_row = dbc.Row([
         dbc.Col(
         html.Div([
         html.H3('Tabela com os assuntos mais frequentes por mês, de acordo com a Vara e Ano escolhidos: ', style=TEXT_STYLE),
-        html.Div(id="table2")
+        html.Div(id="table2",children='tabela_atualizada')
         #html.Div(id='submit-button',children='Ver tabela')
 ])
         ,md=12)
@@ -167,7 +166,7 @@ content_fourth_row = dbc.Row([
         dbc.Col(
         html.Div([
         html.H3('Tabela com as maiores demandas das Varas de acordo com o Ano escolhido:', style=TEXT_STYLE),
-        html.Div(id="table1")
+        html.Div(id="table1",children='tabela_atualizada')
         #html.Div(id='submit-button-2', children='Ver tabela')
 ])
         ,md=12)
@@ -189,13 +188,71 @@ content = html.Div(
 )
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
+#auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 app.layout = html.Div([sidebar, content])
-server = app.server
+#server = app.server
 
 
+'''
+@app.callback(Output('grafico_1','figure'),
+             [Input('escolhe-vara','value'),
+              Input('escolhe-ano','value')])
+def update_figure(vara_selecionada,ano_escolhido):
+    #dados apenas para seleção do menu dropdown
+    ajustes_dados = dados_varas[dados_varas['ano_primeira_dist'] == ano_escolhido]
+    ajustes_dados = ajustes_dados[ajustes_dados['Órgão Julgador'] == vara_selecionada]
 
-@app.callback(Output('grafico1','figure'),
+    top_janeiro = ajustes_dados[ajustes_dados['mes_primeira_dist']== 1]
+    top_5_janeiro = top_janeiro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_fevereiro = ajustes_dados[ajustes_dados['mes_primeira_dist']== 2]
+    top_5_fevereiro = top_fevereiro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_marco = ajustes_dados[ajustes_dados['mes_primeira_dist']== 3]
+    top_5_marco = top_marco['Assunto'].value_counts()[:5].index.tolist()
+
+    top_abril = ajustes_dados[ajustes_dados['mes_primeira_dist']== 4]
+    top_5_abril = top_abril['Assunto'].value_counts()[:5].index.tolist()
+
+    top_maio = ajustes_dados[ajustes_dados['mes_primeira_dist']== 5]
+    top_5_maio = top_maio['Assunto'].value_counts()[:5].index.tolist()
+
+    top_junho = ajustes_dados[ajustes_dados['mes_primeira_dist']== 6]
+    top_5_junho = top_junho['Assunto'].value_counts()[:5].index.tolist()
+
+    top_julho = ajustes_dados[ajustes_dados['mes_primeira_dist']== 7]
+    top_5_julho = top_julho['Assunto'].value_counts()[:5].index.tolist()
+
+    top_agosto = ajustes_dados[ajustes_dados['mes_primeira_dist']== 8]
+    top_5_agosto = top_agosto['Assunto'].value_counts()[:5].index.tolist()
+
+    top_setembro = ajustes_dados[ajustes_dados['mes_primeira_dist']== 9]
+    top_5_setembro = top_setembro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_outubro = ajustes_dados[ajustes_dados['mes_primeira_dist']== 10]
+    top_5_outubro = top_outubro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_novembro = ajustes_dados[ajustes_dados['mes_primeira_dist']== 11]
+    top_5_novembro = top_novembro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_dezembro = ajustes_dados[ajustes_dados['mes_primeira_dist']== 12]
+    top_5_dezembro = top_dezembro['Assunto'].value_counts()[:5].index.tolist()
+
+    nomes_meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
+    lista_assuntos_top5 = [top_5_janeiro, top_5_fevereiro, top_5_marco, top_5_abril, top_5_maio, top_5_junho, top_5_julho, top_5_agosto, top_5_setembro, top_5_outubro, top_5_novembro, top_5_dezembro]
+
+    #lista_de_listas = list(zip(nomes_meses, lista_assuntos_top5))
+
+    #dados_grafico_barras = pd.DataFrame(lista_de_listas, columns=['Meses','Assuntos'])
+
+    return {'data':go.Bar(x=nomes_meses,y=top_5_maio),
+            'layout':go.Layout(title= {"text": "Distribuição de processos por mês da {} no ano {}".format(vara_selecionada,ano_escolhido)},
+                               xaxis = {'title':'Mês da distribuição','categoryorder':'category ascending'},
+                               yaxis = {'title':'Assunto','visible':False},
+                               barmode='stack')}
+
+'''
+@app.callback(Output('grafico_1','figure'),
              [Input('escolhe-vara','value'),
               Input('escolhe-ano','value')])
 def update_figure(vara_selecionada,ano_escolhido):
@@ -226,7 +283,7 @@ def update_figure(vara_selecionada,ano_escolhido):
         vara_filtrada = vara_escolhida[vara_escolhida['Assunto']==assunto_processo]
         traces.append(go.Bar(
                x=vara_filtrada['mes_primeira_dist'],
-               y=vara_filtrada['Assunto'].value_counts()[:5].index.tolist(),
+               y=vara_filtrada['Assunto'],
                showlegend=False
          ))
 
@@ -235,28 +292,6 @@ def update_figure(vara_selecionada,ano_escolhido):
                                xaxis = {'title':'Mês da distribuição','categoryorder':'category ascending'},
                                yaxis = {'title':'Assunto','visible':False},
                                barmode='stack')}
-
-
-@app.callback(Output('grafico2','figure'),
-             [Input('escolhe-ano','value')])
-def update_figure_2(ano_escolhido):
-    ano_selecionado = dados_varas[dados_varas['ano_primeira_dist']==ano_escolhido]
-
-    traces_vara = []
-    for assunto_vara in ano_selecionado['Assunto'].unique():
-        vara_filtrada = ano_selecionado[ano_selecionado['Assunto']==assunto_vara]
-        traces_vara.append(go.Bar(
-               x=vara_filtrada['Órgão Julgador'],
-               y=vara_filtrada['Assunto'],
-               showlegend=False
-         ))
-
-    return {'data':traces_vara,
-            'layout':go.Layout(title= 'Distribuição de processos pelos Órgãos Julgadores no ano {}'.format(ano_escolhido),
-                               xaxis = {'title':'Órgão Julgador','categoryorder':'category ascending'},
-                               yaxis = {'title':'Total de Processos'},
-                               barmode='stack')}
-
 
 @app.callback(Output('table1','children'),
              [Input('escolhe-ano','value')])
@@ -394,5 +429,11 @@ def update_datatable(ano_escolhido, vara_escolhida):
     return dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho)
 
 
+
+if __name__ == '__main__':
+    app.run_server()
+
+'''
 if __name__ == '__main__':
     app.run_server(debug=True, port=8050, host='0.0.0.0')
+'''

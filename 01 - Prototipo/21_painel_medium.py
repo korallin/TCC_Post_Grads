@@ -12,11 +12,10 @@ import numpy as np
 import plotly.express as px
 
 USERNAME_PASSWORD_PAIRS = [
-    ['EliasJacob', 'PinkFloyd1973'],
-    ['BrunoSantos', 'GrandeSenha']
+    ['EliasJacob', 'PinkFloyd1973']
 ]
 
-dados_varas = pd.read_csv('dados-pje-MPF.csv',dtype='unicode')
+dados_varas = pd.read_csv('../dados-pje-MPF.csv',dtype='unicode')
 
 dados_varas['ano_primeira_dist'] = pd.DatetimeIndex(dados_varas['Data Primeira Distribuição']).year
 
@@ -156,7 +155,7 @@ content_third_row = dbc.Row([
         dbc.Col(
         html.Div([
         html.H3('Tabela com os assuntos mais frequentes por mês, de acordo com a Vara e Ano escolhidos: ', style=TEXT_STYLE),
-        html.Div(id="table2")
+        html.Div(id="table2",children='tabela_atualizada')
         #html.Div(id='submit-button',children='Ver tabela')
 ])
         ,md=12)
@@ -167,7 +166,7 @@ content_fourth_row = dbc.Row([
         dbc.Col(
         html.Div([
         html.H3('Tabela com as maiores demandas das Varas de acordo com o Ano escolhido:', style=TEXT_STYLE),
-        html.Div(id="table1")
+        html.Div(id="table1",children='tabela_atualizada')
         #html.Div(id='submit-button-2', children='Ver tabela')
 ])
         ,md=12)
@@ -189,9 +188,9 @@ content = html.Div(
 )
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
+#auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 app.layout = html.Div([sidebar, content])
-server = app.server
+#server = app.server
 
 
 
@@ -226,7 +225,7 @@ def update_figure(vara_selecionada,ano_escolhido):
         vara_filtrada = vara_escolhida[vara_escolhida['Assunto']==assunto_processo]
         traces.append(go.Bar(
                x=vara_filtrada['mes_primeira_dist'],
-               y=vara_filtrada['Assunto'].value_counts()[:5].index.tolist(),
+               y=vara_filtrada['Assunto'],
                showlegend=False
          ))
 
@@ -236,26 +235,6 @@ def update_figure(vara_selecionada,ano_escolhido):
                                yaxis = {'title':'Assunto','visible':False},
                                barmode='stack')}
 
-
-@app.callback(Output('grafico2','figure'),
-             [Input('escolhe-ano','value')])
-def update_figure_2(ano_escolhido):
-    ano_selecionado = dados_varas[dados_varas['ano_primeira_dist']==ano_escolhido]
-
-    traces_vara = []
-    for assunto_vara in ano_selecionado['Assunto'].unique():
-        vara_filtrada = ano_selecionado[ano_selecionado['Assunto']==assunto_vara]
-        traces_vara.append(go.Bar(
-               x=vara_filtrada['Órgão Julgador'],
-               y=vara_filtrada['Assunto'],
-               showlegend=False
-         ))
-
-    return {'data':traces_vara,
-            'layout':go.Layout(title= 'Distribuição de processos pelos Órgãos Julgadores no ano {}'.format(ano_escolhido),
-                               xaxis = {'title':'Órgão Julgador','categoryorder':'category ascending'},
-                               yaxis = {'title':'Total de Processos'},
-                               barmode='stack')}
 
 
 @app.callback(Output('table1','children'),
@@ -324,10 +303,10 @@ def update_datatable(ano_escolhido):
 @app.callback(Output('table2','children'),
             [Input('escolhe-ano','value'),
             Input('escolhe-vara','value')])
-def update_datatable(ano_escolhido, vara_escolhida):
+def update_datatable(ano_escolhido_2, vara_escolhida_2):
 
-    ajustes_dados = dados_varas[dados_varas['ano_primeira_dist'] == ano_escolhido]
-    ajustes_dados = ajustes_dados[ajustes_dados['Órgão Julgador'] == vara_escolhida]
+    ajustes_dados = dados_varas[dados_varas['ano_primeira_dist'] == ano_escolhido_2]
+    ajustes_dados = ajustes_dados[ajustes_dados['Órgão Julgador'] == vara_escolhida_2]
 
     top_janeiro = ajustes_dados[ajustes_dados['mes_primeira_dist']== 1]
     top_5_janeiro = top_janeiro['Assunto'].value_counts()[:5].index.tolist()
@@ -391,8 +370,14 @@ def update_datatable(ano_escolhido, vara_escolhida):
     }
     data = dados_top5_assunto_por_mes.to_dict('rows')
     columns =  [{"name": i, "id": i,} for i in (dados_top5_assunto_por_mes.columns)]
-    return dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho)
+    return dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header=estilo_cabecalho)
+
 
 
 if __name__ == '__main__':
+    app.run_server()
+
+'''
+if __name__ == '__main__':
     app.run_server(debug=True, port=8050, host='0.0.0.0')
+'''
