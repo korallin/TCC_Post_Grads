@@ -154,7 +154,6 @@ fig.show()
 content_third_row = dbc.Row([
         dbc.Col(
         html.Div([
-        html.H3('Tabela com os assuntos mais frequentes por mês, de acordo com a Vara e Ano escolhidos: ', style=TEXT_STYLE),
         html.Div(id="table2",children='tabela_atualizada')
         #html.Div(id='submit-button',children='Ver tabela')
 ])
@@ -165,7 +164,6 @@ content_third_row = dbc.Row([
 content_fourth_row = dbc.Row([
         dbc.Col(
         html.Div([
-        html.H3('Tabela com as maiores demandas das Varas de acordo com o Ano escolhido:', style=TEXT_STYLE),
         html.Div(id="table1",children='tabela_atualizada')
         #html.Div(id='submit-button-2', children='Ver tabela')
 ])
@@ -309,7 +307,8 @@ def update_datatable(ano_escolhido):
 
     data = dados_por_vara.to_dict('rows')
     columns =  [{"name": i, "id": i,} for i in (dados_por_vara.columns)]
-    return dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho)
+    return (html.H3('Tabela com as maiores demandas da Justiça Federal no ano {}:'.format(ano_escolhido), style=TEXT_STYLE),
+            dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho))
 
 @app.callback(Output('table2','children'),
             [Input('escolhe-ano','value'),
@@ -381,7 +380,8 @@ def update_datatable(ano_escolhido, vara_escolhida):
     }
     data = dados_top5_assunto_por_mes.to_dict('rows')
     columns =  [{"name": i, "id": i,} for i in (dados_top5_assunto_por_mes.columns)]
-    return dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho)
+    return (html.H3('Tabela com as maiores demandas da {} no ano {}:'.format(vara_escolhida,ano_escolhido), style=TEXT_STYLE),
+            dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho))
 
 @app.callback(Output('mapa1','figure'),
             [Input('escolhe-ano','value'),
