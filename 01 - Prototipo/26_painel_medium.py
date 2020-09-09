@@ -204,9 +204,7 @@ content = html.Div(
         content_fourth_row,
         html.Hr(),
         content_fifth_row,
-        html.Hr(),
-        content_sixth_row
-
+        
     ],
     style=CONTENT_STYLE
 )
@@ -447,7 +445,7 @@ def update_datatable(ano_escolhido, vara_escolhida):
     fevereiro_acima_media = dados_fevereiro[dados_fevereiro["Assunto Código"] > media_ano]
     fevereiro_anomalia = dados_fevereiro[dados_fevereiro["Assunto Código"] > anomalia_ano]
     # encontrando os assuntos de fevereiro
-    fevereiro_acima_media_lista = fevereiro_anomalia_acima_media["Assunto"].tolist()
+    fevereiro_acima_media_lista = fevereiro_acima_media["Assunto"].tolist()
     fevereiro_anomalia_lista = fevereiro_anomalia["Assunto"].tolist()
 
     # março
@@ -558,6 +556,9 @@ def update_datatable(ano_escolhido, vara_escolhida):
         "Dezembro - Muito acima da média": dezembro_anomalia_lista,
     })
 
+    df = pd.DataFrame.from_dict(dados_analise_estatistica, orient='index')
+    df = df.transpose()
+
 
     estilo_celula = [{
             'if': {'row_index': 'odd'},
@@ -567,8 +568,8 @@ def update_datatable(ano_escolhido, vara_escolhida):
         'backgroundColor': 'rgb(230, 230, 230)',
         'fontWeight': 'bold'
     }
-    data = dados_analise_estatistica.to_dict('rows')
-    columns =  [{"name": i, "id": i,} for i in (dados_analise_estatistica.columns)]
+    data = df.to_dict('rows')
+    columns =  [{"name": i, "id": i,} for i in (df.columns)]
     return (html.H3('Tabela com análise de Assuntos que entraram na {} no ano {}:'.format(vara_escolhida,ano_escolhido), style=TEXT_STYLE),
             dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho))
 
