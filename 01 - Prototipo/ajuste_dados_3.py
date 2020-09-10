@@ -57,7 +57,7 @@ dados_fevereiro = dados_ajustados[dados_ajustados['mes_primeira_dist'] == 2]
 fevereiro_acima_media = dados_fevereiro[dados_fevereiro["Assunto Código"] > media_ano]
 fevereiro_anomalia = dados_fevereiro[dados_fevereiro["Assunto Código"] > anomalia_ano]
 # encontrando os assuntos de fevereiro
-fevereiro_acima_media_lista = fevereiro_anomalia_acima_media["Assunto"].tolist()
+fevereiro_acima_media_lista = fevereiro_acima_media["Assunto"].tolist()
 fevereiro_anomalia_lista = fevereiro_anomalia["Assunto"].tolist()
 
 # março
@@ -144,7 +144,7 @@ dezembro_anomalia_lista = dezembro_anomalia["Assunto"].tolist()
 '''
 #['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
 prototipo de dataframe para mostrar em gráfico de barras
-
+'''
 df = {'Meses':['Janeiro'],
       'Anomalia':janeiro_anomalia_lista,
       'Média':janeiro_acima_media_lista}
@@ -158,7 +158,26 @@ print("A seguir serão mostrados os Assuntos que apareceram em Janeiro numa freq
 for j in range(len(janeiro_anomalia_lista)):
     print (janeiro_anomalia_lista[j])
 
-df = {'Meses':['Janeiro'],
-      'Anomalia':janeiro_anomalia_lista,
-      'Média':janeiro_acima_media_lista}
-'''
+df = {'Meses':['Fevereiro'],
+      'Anomalia':fevereiro_anomalia_lista,
+      'Média':fevereiro_acima_media_lista}
+
+print("A seguir serão mostrados os Assuntos que apareceram em Fevereiro numa frequência acima da média: ")
+for i in range(len(fevereiro_acima_media_lista)):
+    print (fevereiro_acima_media_lista[i])
+
+print("A seguir serão mostrados os Assuntos que apareceram em Fevereiro numa frequência muito acima da média: ")
+for j in range(len(fevereiro_anomalia_lista)):
+    print (fevereiro_anomalia_lista[j])
+
+df = {'Meses':['Março'],
+      'Anomalia':marco_anomalia_lista,
+      'Média':marco_acima_media_lista}
+
+print("A seguir serão mostrados os Assuntos que apareceram em Março numa frequência acima da média: ")
+for i in range(len(marco_acima_media_lista)):
+    print (marco_acima_media_lista[i])
+
+print("A seguir serão mostrados os Assuntos que apareceram em Março numa frequência muito acima da média: ")
+for j in range(len(marco_anomalia_lista)):
+    print (marco_anomalia_lista[j])
