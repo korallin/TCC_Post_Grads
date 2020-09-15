@@ -182,10 +182,11 @@ content_fifth_row = dbc.Row([
         ,md=12)
 ])
 
-
+# html.H1('Hello Dash', style={'background-image': 'url(https://upload.wikimedia.org/wikipedia/commons/2/22/North_Star_-_invitation_background.png)'})
 content = html.Div(
     [
-        html.H2('Painel do Centro de Inteligência', style=TEXT_STYLE),
+        html.H1(html.Div(html.Img(src="https://intranet2.jfrn.jus.br/intranet/javax.faces.resource/logo-nti.png.xhtml?ln=img", style={'height':'10%', 'width':'10%', 'float':'right'}))),
+        html.H1('Painel do Centro de Inteligência', style=TEXT_STYLE),
         html.Hr(),
         content_first_row,
         html.Hr(),
