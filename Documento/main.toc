@@ -11,14 +11,12 @@
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Introdução}}{14}{chapter.1}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Ferramentas de criação de painéis}}{15}{chapter.2}%
+\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Ferramentas de dashboard}}{15}{chapter.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Ferramentas de dashboard}}{16}{chapter.3}%
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Limpeza de dados}}{17}{chapter.4}%
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Limpeza de dados}}{16}{chapter.3}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Conclusão}}{18}{chapter.5}%
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Conclusão}}{17}{chapter.4}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\MakeTextUppercase {Refer\^encias}}{19}{section*.20}%
+\contentsline {chapter}{\MakeTextUppercase {Refer\^encias}}{18}{section*.20}%

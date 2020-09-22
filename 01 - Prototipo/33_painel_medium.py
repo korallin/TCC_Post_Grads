@@ -72,10 +72,10 @@ CARD_TEXT_STYLE = {
 
 controls = dbc.FormGroup([
            html.P("Escolha o órgão julgador: ", style={'textAlign': 'center'}),
-           dcc.Dropdown(id='escolhe-vara',options=opcoes_vara,value='None'),
+           dcc.Dropdown(id='escolhe-vara',options=opcoes_vara,value='6ª Vara Federal'),
            html.Br(),
            html.P("Escolha o ano a ser visualizado: ",style={'textAlign': 'center'}),
-           dcc.Dropdown(id='escolhe-ano',options=opcoes_ano,value='None')
+           dcc.Dropdown(id='escolhe-ano',options=opcoes_ano,value='2015')
 ])
 
 sidebar = html.Div(
@@ -201,7 +201,7 @@ content = html.Div(
 )
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
+#auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 app.layout = html.Div([sidebar, content])
 server = app.server
 
@@ -215,9 +215,9 @@ def update_datatable(ano_escolhido, vara_escolhida):
     ano_escolhido = float(ano_escolhido)
 
     dados_1 = dados_varas[dados_varas['Órgão Julgador'] == vara_escolhida]
-    dados_2 = dados_1[dados_1['ano_primeira_dist'] <= ano_escolhido]
-    ano_anterior = ano_escolhido -1.0
-    dados_2 = dados_2[dados_2['ano_primeira_dist'] >= ano_anterior]
+    dados_2 = dados_1[dados_1['ano_primeira_dist'] == ano_escolhido]
+    #ano_anterior = ano_escolhido -1.0
+    #dados_2 = dados_2[dados_2['ano_primeira_dist'] >= ano_anterior]
 
     dados_2 = dados_2.groupby(['mes_primeira_dist', 'Assunto'])['Assunto Código'].count()
     dados_ajustados = dados_2.groupby(level='mes_primeira_dist').nlargest(25).reset_index(level=0, drop=True).reset_index()

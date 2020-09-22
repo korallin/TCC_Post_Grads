@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.8.24)  31 AUG 2020 12:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.8.24)  16 SEP 2020 15:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -767,15 +767,8 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 97.
 
 
 Writing index file main.idx 
-(./main.aux (./capitulos/cap01.aux) (./capitulos/cap02.aux
-
-LaTeX Warning: Label `cap_trabalho_academico' multiply defined.
-
-) (./capitulos/cap03.aux
-
-LaTeX Warning: Label `cap_trabalho_academico' multiply defined.
-
-))
+(./main.aux (./capitulos/cap01.aux) (./capitulos/cap02.aux)
+(./capitulos/cap03.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 132.
@@ -796,7 +789,8 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 132.
 LaTeX Font Info:    ... okay on input line 132.
 \AtBeginShipoutBox=\box52
 Package hyperref Info: Link coloring ON on input line 132.
- (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -939,27 +933,24 @@ l.150
 \openout2 = `./capitulos/cap01.aux'.
 
 
-(./capitulos/cap01.tex) [15
-
-
-]
+No file ./capitulos/cap01.tex.
 \openout2 = `./capitulos/cap02.aux'.
 
- (./capitulos/cap02.tex
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 4
+(./capitulos/cap02.tex
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 3
 .
-
-(/usr/share/texmf/tex/latex/lm/ts1lmr.fd
+ (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) [16
+)) [15
+
 
 
 
 ]
 \openout2 = `./capitulos/cap03.aux'.
 
- (./capitulos/cap03.tex)
-[17
+
+(./capitulos/cap03.tex) [16
 
 
 
@@ -967,12 +958,12 @@ File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 \tf@brf=\write5
 \openout5 = `main.brf'.
 
- [18
+ [17
 
 
 ]
 bibitemlist
-) [19
+) [18
 
 ]
 \tf@lof=\write6
@@ -995,18 +986,14 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 311.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 311.
 Package rerunfilecheck Info: File `main.brf' has not changed.
 (rerunfilecheck)             Checksum: 346E7DAE74B9DE9AC1D072783987CF4C;41.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 311.
  ) 
 Here is how much of TeX's memory you used:
- 14567 strings out of 481239
- 229810 string characters out of 5920377
+ 14551 strings out of 481239
+ 229580 string characters out of 5920377
  721849 words of memory out of 5000000
- 29456 multiletter control sequences out of 15000+600000
- 574722 words of font info for 68 fonts, out of 8000000 for 9000
+ 29452 multiletter control sequences out of 15000+600000
+ 574320 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,12n,43p,1047b,507s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/d
@@ -1015,10 +1002,10 @@ e/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/texmf/fonts/type1/public/lm/lm
 bx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pf
 b></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb>
-Output written on main.pdf (20 pages, 500672 bytes).
+Output written on main.pdf (19 pages, 496628 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 210 compressed objects within 3 object streams
- 59 named destinations out of 1000 (max. 500000)
- 12958 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 232 PDF objects out of 1000 (max. 8388607)
+ 202 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 12950 words of extra memory for PDF output out of 14400 (max. 10000000)
 
