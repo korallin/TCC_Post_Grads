@@ -79,8 +79,6 @@ controls = dbc.FormGroup([
 ])
 
 controls_2 = dbc.FormGroup([
-           html.P("Escolha o órgão julgador: ", style={'textAlign': 'center'}),
-           dcc.Dropdown(id='escolhe-vara-2',options=opcoes_vara,value='6ª Vara Federal'),
            html.Br(),
            html.P("Escolha o ano a ser visualizado: ",style={'textAlign': 'center'}),
            dcc.Dropdown(id='escolhe-ano-2',options=opcoes_ano,value='2015')
@@ -162,23 +160,6 @@ content_second_row = dbc.Row([
     ,md=12)
 ])
 
-'''
-content_fourth_row = dbc.Row([
-        dbc.Col(
-        html.Div([
-        html.Div(id="table1",children='tabela_atualizada')
-        #html.Div(id='submit-button-2', children='Ver tabela')
-])
-        ,md=12)
-])
-import plotly.express as px
-df = px.data.gapminder().query("year == 2007").query("continent == 'Europe'")
-df.loc[df['pop'] < 2.e6, 'country'] = 'Other countries' # Represent only large countries
-fig = px.pie(df, values='pop', names='country', title='Population of European continent')
-fig.show()
-
-'''
-
 content_third_row = dbc.Row([
         dbc.Col(
         html.Div([
@@ -189,16 +170,24 @@ content_third_row = dbc.Row([
 ])
 
 
-content_fifth_row = dbc.Row([
+
+content_first_row_tab2 = dbc.Row([
         dbc.Col(
         html.Div([
-        html.H3('Mapa de calor com taxa de retenção de processos: ', style=TEXT_STYLE),
-        html.Div([dcc.Graph(id='mapa1')],style={"width": "100%", "display": "inline-block"})
+        html.Div(id="table2_2",children='tabela_atualizada')
         #html.Div(id='submit-button',children='Ver tabela')
 ])
         ,md=12)
 ])
 
+content_second_row_tab2 = dbc.Row([
+        dbc.Col(
+        html.Div([
+        html.Div(id="table3_2",children='tabela_atualizada')
+        #html.Div(id='submit-button',children='Ver tabela')
+])
+        ,md=12)
+])
 # html.H1('Hello Dash', style={'background-image': 'url(https://upload.wikimedia.org/wikipedia/commons/2/22/North_Star_-_invitation_background.png)'})
 content_tab_1 = html.Div(
     [
@@ -209,24 +198,23 @@ content_tab_1 = html.Div(
         html.Hr(),
         content_second_row,
         html.Hr(),
-        content_third_row,
-        html.Hr(),
-        content_fifth_row
+        content_third_row
 
     ],
     style=CONTENT_STYLE
 )
+
 content_tab_2 = html.Div(
     [
         html.H1(html.Div(html.Img(src="https://intranet2.jfrn.jus.br/intranet/javax.faces.resource/logo-nti.png.xhtml?ln=img", style={'height':'10%', 'width':'10%', 'float':'right'}))),
         html.H1('Painel do Centro de Inteligência', style=TEXT_STYLE),
         html.Hr(),
-        dcc.Graph(figure={
-                    'data': [
-                        {'x': [1, 2, 3], 'y': [2, 4, 3],
-                            'type': 'bar', 'name': 'SF'},
-                        {'x': [1, 2, 3], 'y': [5, 4, 3],
-                         'type': 'bar', 'name': u'Montréal'},]})],
+        content_first_row_tab2,
+        html.Hr(),
+        content_second_row_tab2
+
+
+        ],
     style=CONTENT_STYLE
 )
 
@@ -820,24 +808,155 @@ def update_datatable(ano_escolhido, vara_escolhida):
     return (html.H3('Tabela com as maiores demandas da {} no ano {}:'.format(vara_escolhida,ano_escolhido), style=TEXT_STYLE),
             dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho))
 
-@app.callback(Output('mapa1','figure'),
-            [Input('escolhe-ano','value'),
-            Input('escolhe-vara','value')])
-def update_datatable(ano_escolhido, vara_escolhida):
-    dados = {'Órgão Julgador':['1ª Vara Federal','2ª Vara Federal','3ª Vara Federal','4ª Vara Federal','5ª Vara Federal','6ª Vara Federal','7ª Vara Federal','14ª Vara Federal','8ª Vara Federal','10ª Vara Federal','13ª Vara Federal','9ª Vara Federal','11ª Vara Federal','12ª Vara Federal'],
-             'Cidade':['Natal','Natal','Natal','Natal','Natal','Natal','Natal','Natal','Mossoró','Mossoró','Mossoró','Caicó','Assu','Pau dos Ferros'],
-             'Latitude':[-5.7793,-5.7795,-5.7792,-5.7790,-5.7791,-5.7795,-5.7793,-5.7791,-5.1841,-5.1843,-5.1839,-6.4600,-5.5756,-6.1124],
-             'Longitude':[-35.2009,-35.2007,-35.2008,-35.2009,-35.2011,-35.2010,-35.2010,-35.2009,-37.3478,-37.3476,-37.3480,-37.0937,-36.9150,-38.2052],
-             'Congestionamento':[1.2,1.5,2.3,2.0,1.1,1.3,1.8,2.9,2.8,1.1,1.5,1.8,2.1,2.2]} #6.1124° S, 38.2052° W
+@app.callback(Output('table2_2','children'),
+            [Input('escolhe-ano-2','value')])
+def update_datatable(ano_escolhido):
 
-    dataframe_varas = pd.DataFrame(dados)
+    competencia_civel = dados_varas[dados_varas['ano_primeira_dist'] == ano_escolhido]
+    #df['column name'] = df['column name'].replace(['1st old value','2nd old value',...],'new value')
 
-    #, size="car_hours"
+    competencia_civel['Órgão Julgador'] = competencia_civel['Órgão Julgador'].replace(['1ª Vara Federal','4ª Vara Federal','5ª Vara Federal'],'civel')
+    competencia_civel = competencia_civel[competencia_civel['Órgão Julgador'] == 'civel']
 
-    return(px.scatter_mapbox(dataframe_varas, lat="Latitude", lon="Longitude", color="Congestionamento",size="Congestionamento",
-                     color_continuous_scale="Bluered", size_max=15, zoom=7,
-                     mapbox_style="carto-positron", text="Órgão Julgador"))
+    top_janeiro = competencia_civel[competencia_civel['mes_primeira_dist']== 1]
+    top_5_janeiro = top_janeiro['Assunto'].value_counts()[:5].index.tolist()
 
+    top_fevereiro = competencia_civel[competencia_civel['mes_primeira_dist']== 2]
+    top_5_fevereiro = top_fevereiro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_marco = competencia_civel[competencia_civel['mes_primeira_dist']== 3]
+    top_5_marco = top_marco['Assunto'].value_counts()[:5].index.tolist()
+
+    top_abril = competencia_civel[competencia_civel['mes_primeira_dist']== 4]
+    top_5_abril = top_abril['Assunto'].value_counts()[:5].index.tolist()
+
+    top_maio = competencia_civel[competencia_civel['mes_primeira_dist']== 5]
+    top_5_maio = top_maio['Assunto'].value_counts()[:5].index.tolist()
+
+    top_junho = competencia_civel[competencia_civel['mes_primeira_dist']== 6]
+    top_5_junho = top_junho['Assunto'].value_counts()[:5].index.tolist()
+
+    top_julho = competencia_civel[competencia_civel['mes_primeira_dist']== 7]
+    top_5_julho = top_julho['Assunto'].value_counts()[:5].index.tolist()
+
+    top_agosto = competencia_civel[competencia_civel['mes_primeira_dist']== 8]
+    top_5_agosto = top_agosto['Assunto'].value_counts()[:5].index.tolist()
+
+    top_setembro = competencia_civel[competencia_civel['mes_primeira_dist']== 9]
+    top_5_setembro = top_setembro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_outubro = competencia_civel[competencia_civel['mes_primeira_dist']== 10]
+    top_5_outubro = top_outubro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_novembro = competencia_civel[competencia_civel['mes_primeira_dist']== 11]
+    top_5_novembro = top_novembro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_dezembro = competencia_civel[competencia_civel['mes_primeira_dist']== 12]
+    top_5_dezembro = top_dezembro['Assunto'].value_counts()[:5].index.tolist()
+
+    dados_civeis = pd.DataFrame({
+
+                     "Janeiro":top_5_janeiro,
+                     "Fevereiro":top_5_fevereiro,
+                     "Março":top_5_marco,
+                     "Abril":top_5_abril,
+                     "Maio":top_5_maio,
+                     "Junho":top_5_junho,
+                     "Julho":top_5_julho,
+                     "Agosto":top_5_agosto,
+                     "Setembro":top_5_setembro,
+                     "Outubro":top_5_outubro,
+                     "Novembro":top_5_novembro,
+                     "Dezembro":top_5_dezembro
+    })
+
+    estilo_celula = [{
+            'if': {'row_index': 'odd'},
+            'backgroundColor': 'rgb(248, 248, 248)'
+    }]
+    estilo_cabecalho = {
+        'backgroundColor': 'rgb(230, 230, 230)',
+        'fontWeight': 'bold'
+    }
+    data = dados_civeis.to_dict('rows')
+    columns =  [{"name": i, "id": i,} for i in (dados_civeis.columns)]
+    return (html.H3('Tabela com as maiores demandas das Varas Cíveis no ano {}:'.format(ano_escolhido), style=TEXT_STYLE),
+            dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho))
+
+@app.callback(Output('table3_2','children'),
+            [Input('escolhe-ano-2','value')])
+def update_datatable(ano_escolhido):
+
+    competencia_juizado = dados_varas[dados_varas['ano_primeira_dist'] == ano_escolhido]
+    #df['column name'] = df['column name'].replace(['1st old value','2nd old value',...],'new value')
+
+    competencia_juizado['Órgão Julgador'] = competencia_juizado['Órgão Julgador'].replace(['3ª Vara Federal','7ª Vara Federal'],'juizado')
+    competencia_juizado = competencia_juizado[competencia_juizado['Órgão Julgador'] == 'juizado']
+
+    top_janeiro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 1]
+    top_5_janeiro = top_janeiro['Assunto'].value_counts()[:2].index.tolist()
+
+    top_fevereiro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 2]
+    top_5_fevereiro = top_fevereiro['Assunto'].value_counts()[:2].index.tolist()
+
+    top_marco = competencia_juizado[competencia_juizado['mes_primeira_dist']== 3]
+    top_5_marco = top_marco['Assunto'].value_counts()[:2].index.tolist()
+
+    top_abril = competencia_juizado[competencia_juizado['mes_primeira_dist']== 4]
+    top_5_abril = top_abril['Assunto'].value_counts()[:2].index.tolist()
+
+    top_maio = competencia_juizado[competencia_juizado['mes_primeira_dist']== 5]
+    top_5_maio = top_maio['Assunto'].value_counts()[:2].index.tolist()
+
+    top_junho = competencia_juizado[competencia_juizado['mes_primeira_dist']== 6]
+    top_5_junho = top_junho['Assunto'].value_counts()[:2].index.tolist()
+
+    top_julho = competencia_juizado[competencia_juizado['mes_primeira_dist']== 7]
+    top_5_julho = top_julho['Assunto'].value_counts()[:2].index.tolist()
+
+    top_agosto = competencia_juizado[competencia_juizado['mes_primeira_dist']== 8]
+    top_5_agosto = top_agosto['Assunto'].value_counts()[:2].index.tolist()
+
+    top_setembro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 9]
+    top_5_setembro = top_setembro['Assunto'].value_counts()[:2].index.tolist()
+
+    top_outubro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 10]
+    top_5_outubro = top_outubro['Assunto'].value_counts()[:2].index.tolist()
+
+    top_novembro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 11]
+    top_5_novembro = top_novembro['Assunto'].value_counts()[:2].index.tolist()
+
+    top_dezembro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 12]
+    top_5_dezembro = top_dezembro['Assunto'].value_counts()[:2].index.tolist()
+
+    dados_juizado = pd.DataFrame({
+
+                     "Janeiro":pd.Series(top_5_janeiro),
+                     "Fevereiro":pd.Series(top_5_fevereiro),
+                     "Março":pd.Series(top_5_marco),
+                     "Abril":pd.Series(top_5_abril),
+                     "Maio":pd.Series(top_5_maio),
+                     "Junho":pd.Series(top_5_junho),
+                     "Julho":pd.Series(top_5_julho),
+                     "Agosto":pd.Series(top_5_agosto),
+                     "Setembro":pd.Series(top_5_setembro),
+                     "Outubro":pd.Series(top_5_outubro),
+                     "Novembro":pd.Series(top_5_novembro),
+                     "Dezembro":pd.Series(top_5_dezembro)
+    })
+
+    estilo_celula = [{
+            'if': {'row_index': 'odd'},
+            'backgroundColor': 'rgb(248, 248, 248)'
+    }]
+    estilo_cabecalho = {
+        'backgroundColor': 'rgb(230, 230, 230)',
+        'fontWeight': 'bold'
+    }
+    data = dados_juizado.to_dict('rows')
+    columns =  [{"name": i, "id": i,} for i in (dados_juizado.columns)]
+    return (html.H3('Tabela com as maiores demandas dos Juizados no ano {}:'.format(ano_escolhido), style=TEXT_STYLE),
+            dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho))
 
 if __name__ == '__main__':
     app.run_server()
