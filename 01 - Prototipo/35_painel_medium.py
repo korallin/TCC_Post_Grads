@@ -188,6 +188,15 @@ content_second_row_tab2 = dbc.Row([
 ])
         ,md=12)
 ])
+
+content_third_row_tab2 = dbc.Row([
+        dbc.Col(
+        html.Div([
+        html.Div(id="table4_2",children='tabela_atualizada')
+        #html.Div(id='submit-button',children='Ver tabela')
+])
+        ,md=12)
+])
 # html.H1('Hello Dash', style={'background-image': 'url(https://upload.wikimedia.org/wikipedia/commons/2/22/North_Star_-_invitation_background.png)'})
 content_tab_1 = html.Div(
     [
@@ -199,7 +208,6 @@ content_tab_1 = html.Div(
         content_second_row,
         html.Hr(),
         content_third_row
-
     ],
     style=CONTENT_STYLE
 )
@@ -211,10 +219,10 @@ content_tab_2 = html.Div(
         html.Hr(),
         content_first_row_tab2,
         html.Hr(),
-        content_second_row_tab2
-
-
-        ],
+        content_second_row_tab2,
+        html.Hr(),
+        content_third_row_tab2
+    ],
     style=CONTENT_STYLE
 )
 
@@ -856,18 +864,18 @@ def update_datatable(ano_escolhido):
 
     dados_civeis = pd.DataFrame({
 
-                     "Janeiro":top_5_janeiro,
-                     "Fevereiro":top_5_fevereiro,
-                     "Março":top_5_marco,
-                     "Abril":top_5_abril,
-                     "Maio":top_5_maio,
-                     "Junho":top_5_junho,
-                     "Julho":top_5_julho,
-                     "Agosto":top_5_agosto,
-                     "Setembro":top_5_setembro,
-                     "Outubro":top_5_outubro,
-                     "Novembro":top_5_novembro,
-                     "Dezembro":top_5_dezembro
+                     "Janeiro":pd.Series(top_5_janeiro),
+                     "Fevereiro":pd.Series(top_5_fevereiro),
+                     "Março":pd.Series(top_5_marco),
+                     "Abril":pd.Series(top_5_abril),
+                     "Maio":pd.Series(top_5_maio),
+                     "Junho":pd.Series(top_5_junho),
+                     "Julho":pd.Series(top_5_julho),
+                     "Agosto":pd.Series(top_5_agosto),
+                     "Setembro":pd.Series(top_5_setembro),
+                     "Outubro":pd.Series(top_5_outubro),
+                     "Novembro":pd.Series(top_5_novembro),
+                     "Dezembro":pd.Series(top_5_dezembro)
     })
 
     estilo_celula = [{
@@ -893,41 +901,41 @@ def update_datatable(ano_escolhido):
     competencia_juizado['Órgão Julgador'] = competencia_juizado['Órgão Julgador'].replace(['3ª Vara Federal','7ª Vara Federal'],'juizado')
     competencia_juizado = competencia_juizado[competencia_juizado['Órgão Julgador'] == 'juizado']
 
-    top_janeiro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 1]
-    top_5_janeiro = top_janeiro['Assunto'].value_counts()[:2].index.tolist()
+    top_janeiro_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 1]
+    top_5_janeiro = top_janeiro_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_fevereiro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 2]
-    top_5_fevereiro = top_fevereiro['Assunto'].value_counts()[:2].index.tolist()
+    top_fevereiro_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 2]
+    top_5_fevereiro = top_fevereiro_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_marco = competencia_juizado[competencia_juizado['mes_primeira_dist']== 3]
-    top_5_marco = top_marco['Assunto'].value_counts()[:2].index.tolist()
+    top_marco_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 3]
+    top_5_marco = top_marco_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_abril = competencia_juizado[competencia_juizado['mes_primeira_dist']== 4]
-    top_5_abril = top_abril['Assunto'].value_counts()[:2].index.tolist()
+    top_abril_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 4]
+    top_5_abril = top_abril_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_maio = competencia_juizado[competencia_juizado['mes_primeira_dist']== 5]
-    top_5_maio = top_maio['Assunto'].value_counts()[:2].index.tolist()
+    top_maio_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 5]
+    top_5_maio = top_maio_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_junho = competencia_juizado[competencia_juizado['mes_primeira_dist']== 6]
-    top_5_junho = top_junho['Assunto'].value_counts()[:2].index.tolist()
+    top_junho_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 6]
+    top_5_junho = top_junho_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_julho = competencia_juizado[competencia_juizado['mes_primeira_dist']== 7]
-    top_5_julho = top_julho['Assunto'].value_counts()[:2].index.tolist()
+    top_julho_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 7]
+    top_5_julho = top_julho_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_agosto = competencia_juizado[competencia_juizado['mes_primeira_dist']== 8]
-    top_5_agosto = top_agosto['Assunto'].value_counts()[:2].index.tolist()
+    top_agosto_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 8]
+    top_5_agosto = top_agosto_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_setembro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 9]
-    top_5_setembro = top_setembro['Assunto'].value_counts()[:2].index.tolist()
+    top_setembro_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 9]
+    top_5_setembro = top_setembro_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_outubro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 10]
-    top_5_outubro = top_outubro['Assunto'].value_counts()[:2].index.tolist()
+    top_outubro_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 10]
+    top_5_outubro = top_outubro_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_novembro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 11]
-    top_5_novembro = top_novembro['Assunto'].value_counts()[:2].index.tolist()
+    top_novembro_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 11]
+    top_5_novembro = top_novembro_juizado['Assunto'].value_counts()[:10].index.tolist()
 
-    top_dezembro = competencia_juizado[competencia_juizado['mes_primeira_dist']== 12]
-    top_5_dezembro = top_dezembro['Assunto'].value_counts()[:2].index.tolist()
+    top_dezembro_juizado = competencia_juizado[competencia_juizado['mes_primeira_dist']== 12]
+    top_5_dezembro = top_dezembro_juizado['Assunto'].value_counts()[:10].index.tolist()
 
     dados_juizado = pd.DataFrame({
 
@@ -956,6 +964,82 @@ def update_datatable(ano_escolhido):
     data = dados_juizado.to_dict('rows')
     columns =  [{"name": i, "id": i,} for i in (dados_juizado.columns)]
     return (html.H3('Tabela com as maiores demandas dos Juizados no ano {}:'.format(ano_escolhido), style=TEXT_STYLE),
+            dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho))
+
+
+@app.callback(Output('table4_2','children'),
+            [Input('escolhe-ano-2','value')])
+def update_datatable(ano_escolhido):
+
+    competencia_penal = dados_varas[dados_varas['ano_primeira_dist'] == ano_escolhido]
+    #df['column name'] = df['column name'].replace(['1st old value','2nd old value',...],'new value')
+
+    competencia_penal['Órgão Julgador'] = competencia_penal['Órgão Julgador'].replace(['2ª Vara Federal','4ª Vara Federal'],'penal')
+    competencia_penal = competencia_penal[competencia_penal['Órgão Julgador'] == 'penal']
+
+    top_janeiro = competencia_penal[competencia_penal['mes_primeira_dist']== 1]
+    top_5_janeiro = top_janeiro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_fevereiro = competencia_penal[competencia_penal['mes_primeira_dist']== 2]
+    top_5_fevereiro = top_fevereiro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_marco = competencia_penal[competencia_penal['mes_primeira_dist']== 3]
+    top_5_marco = top_marco['Assunto'].value_counts()[:5].index.tolist()
+
+    top_abril = competencia_penal[competencia_penal['mes_primeira_dist']== 4]
+    top_5_abril = top_abril['Assunto'].value_counts()[:5].index.tolist()
+
+    top_maio = competencia_penal[competencia_penal['mes_primeira_dist']== 5]
+    top_5_maio = top_maio['Assunto'].value_counts()[:5].index.tolist()
+
+    top_junho = competencia_penal[competencia_penal['mes_primeira_dist']== 6]
+    top_5_junho = top_junho['Assunto'].value_counts()[:5].index.tolist()
+
+    top_julho = competencia_penal[competencia_penal['mes_primeira_dist']== 7]
+    top_5_julho = top_julho['Assunto'].value_counts()[:5].index.tolist()
+
+    top_agosto = competencia_penal[competencia_penal['mes_primeira_dist']== 8]
+    top_5_agosto = top_agosto['Assunto'].value_counts()[:5].index.tolist()
+
+    top_setembro = competencia_penal[competencia_penal['mes_primeira_dist']== 9]
+    top_5_setembro = top_setembro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_outubro = competencia_penal[competencia_penal['mes_primeira_dist']== 10]
+    top_5_outubro = top_outubro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_novembro = competencia_penal[competencia_penal['mes_primeira_dist']== 11]
+    top_5_novembro = top_novembro['Assunto'].value_counts()[:5].index.tolist()
+
+    top_dezembro = competencia_penal[competencia_penal['mes_primeira_dist']== 12]
+    top_5_dezembro = top_dezembro['Assunto'].value_counts()[:5].index.tolist()
+
+    dados_penal = pd.DataFrame({
+
+                     "Janeiro":pd.Series(top_5_janeiro),
+                     "Fevereiro":pd.Series(top_5_fevereiro),
+                     "Março":pd.Series(top_5_marco),
+                     "Abril":pd.Series(top_5_abril),
+                     "Maio":pd.Series(top_5_maio),
+                     "Junho":pd.Series(top_5_junho),
+                     "Julho":pd.Series(top_5_julho),
+                     "Agosto":pd.Series(top_5_agosto),
+                     "Setembro":pd.Series(top_5_setembro),
+                     "Outubro":pd.Series(top_5_outubro),
+                     "Novembro":pd.Series(top_5_novembro),
+                     "Dezembro":pd.Series(top_5_dezembro)
+    })
+
+    estilo_celula = [{
+            'if': {'row_index': 'odd'},
+            'backgroundColor': 'rgb(248, 248, 248)'
+    }]
+    estilo_cabecalho = {
+        'backgroundColor': 'rgb(230, 230, 230)',
+        'fontWeight': 'bold'
+    }
+    data = dados_penal.to_dict('rows')
+    columns =  [{"name": i, "id": i,} for i in (dados_penal.columns)]
+    return (html.H3('Tabela com as maiores demandas das Varas Penais no ano {}:'.format(ano_escolhido), style=TEXT_STYLE),
             dt.DataTable(data=data, columns=columns,style_table={'overflowX': 'auto'},style_data_conditional=estilo_celula,style_header = estilo_cabecalho))
 
 if __name__ == '__main__':
